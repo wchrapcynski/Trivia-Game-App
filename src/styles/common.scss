@@ -1,0 +1,6 @@
+@import "./var.scss";
+
+@mixin font-black-shadow() {
+  text-shadow: 2px 2px 2px black;
+  transition: 0.5s ease;
+}
