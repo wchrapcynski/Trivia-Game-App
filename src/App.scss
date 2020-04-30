@@ -16,13 +16,31 @@
   background-image: url("./images/background.png");
   background-repeat: repeat;
   background-size: 5em;
-  .header {
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  .header, .top, .bottom {
     display: flex;
-    flex-direction: column;
     align-items: center;
+  }
+
+  .header {
+    flex-direction: column;
     .header__logo {
-      max-width: 700px;
+      width: 95%;
       padding: 0.5em 0;
     }
+  }
+  .top, .bottom {
+    padding: 0 0.5em;
+  }
+  .top {
+    justify-content: center;
+  }
+  .bottom {
+    flex-direction: column-reverse;
+    justify-content: center;
+    height: 100%;
   }
 }

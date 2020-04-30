@@ -1,10 +1,10 @@
 import React from 'react';
 import './choice.scss';
 
-function Choice() {
+function Choice(props) {
   return(
-    <div>
-
+    <div className="choice">
+      {props.question}
     </div>
   )
 }

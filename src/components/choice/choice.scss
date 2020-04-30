@@ -1,0 +1,22 @@
+@import './../../styles/common.scss';
+
+.choice {
+  font-family: $font-main;
+  font-size: 0.8em;
+  height: 3.5em;
+  border: 1px double #54b948;
+  box-shadow: inset 0 0 2px 0 rgba(255, 255, 255, 0.4),
+    inset 0 0 5px 0 rgba(0, 0, 0, 0.4), inset 0 0 5px 5px rgba(0, 0, 0, 0.05),
+    2px 2px 4px 0 rgba(0, 0, 0, 0.25);
+  background-image: radial-gradient(rgba(82, 184, 71, 0.92) 60%, #54b948 40%);
+  width: 100%;
+  border-radius: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $white;
+  @include font-black-shadow();
+  margin: 0.5em 0;
+  padding: 0.4em 1em 0.5em 1em;
+  text-align: center;
+} 
