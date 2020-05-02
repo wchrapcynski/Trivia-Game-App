@@ -5,7 +5,7 @@ import './navigation.scss';
 function Navigation() {
   return (
     <div className="navigation">
-      <NavButton label="Score" />
+      <NavButton label="Score 0/10" />
       <NavButton label="Good Luck!" />
       <NavButton label="Start Game" />
     </div>

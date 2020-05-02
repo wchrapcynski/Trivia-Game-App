@@ -3,8 +3,8 @@ import './nav_button.scss';
 
 function Nav_Button(props) {
   return(
-    <div>
-      <button>{props.label}</button>
+    <div className="nav_button">
+      {props.label}
     </div>
   )
 }
