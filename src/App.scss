@@ -29,9 +29,8 @@
     flex-direction: column;
     .header__logo {
       width: 95%;
-      padding: 0.5em 0;
+      padding-top: 0.5em;
     }
-    height: 5%;
   }
   .top, .bottom {
     padding: 0 0.5em;
@@ -43,6 +42,5 @@
   .bottom {
     flex-direction: column-reverse;
     justify-content: space-evenly;
-    height: 55%;
   }
 }
