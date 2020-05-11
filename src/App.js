@@ -1,61 +1,46 @@
 import React, { useState, useEffect} from "react";
+import { useDispatch } from 'react-redux';
 import Logo from "./images/logo2.png";
 import "./App.scss";
+import * as questionActions from './actions/fetchActions'
 import Question from "./components/question/question";
 import Answers from "./components/answers/answers";
 import Navigation from "./components/navigation/navigation";
 
 function App() {
+  const dispatch = useDispatch();
   const apiAccessOptions = {method: "GET", headers: {"Authorization": "Token " + process.env.REACT_APP_TRIVIA_API_KEY}}
-  const baseUrl = "http://localhost:8000";
-  const questionListUrl = baseUrl + "/trivia/";
-  const questionUrl = baseUrl + "/question/";
-  const categorysearch = baseUrl + "/categorysearch/"
-  const leaderboardUrl = baseUrl + "/leaderboard/";
-  const publishedUrl = baseUrl + "/published/";
+  const baseApiUrl = "http://localhost:8000";
 
-  const [questions, setQuestions] = useState(null)
-  const [leaderboard, setLeaderboard] = useState(null)
-  const [published, setPublished] = useState(null)
-
-  const fetchData = (url, setData) => {
-    fetch(url, apiAccessOptions)
-    .then(response => response.json())
-    .then(response => setData(response))
-    .catch(error => console.log("Data was not received"))
+  const apiEndPoints = {
+    questionList: baseApiUrl + "/trivia/",
+    question: baseApiUrl + "/question/",
+    categorySearch: baseApiUrl + "/categorysearch/",
+    leaderboard: baseApiUrl + "/leaderboard/",
+    published: baseApiUrl + "/published/"
   }
 
-  // useEffect(() => {
-  //   fetchData(questionUrl + "/3", setQuestions)
-  //   /* eslint-disable react-hooks/exhaustive-deps */
-  // }, [])
+  const [published, setPublished] = useState(null)
 
-  // useEffect(() => {
-  //   fetchData(publishedUrl, setPublished)
-    
-  // }, [])
+  function setQuestionData() {
+    dispatch(questionActions.fetchQuestionData(apiEndPoints.question, apiAccessOptions, "3"));
+  }
 
   useEffect(() => {
-    fetchData('http://localhost:8000/categorysearch/?category=movies', setQuestions)
+    // fetchData(questionUrl + "3", setQuestionData)
+    setQuestionData()
     /* eslint-disable react-hooks/exhaustive-deps */
   }, [])
 
   // useEffect(() => {
-  //   fetchData(leaderboardUrl, setLeaderboard)
-  //   /* eslint-disable react-hooks/exhaustive-deps */
+  //   fetchData(publishedUrl, setPublished)
+  //   /* eslint-disable react-hooks/exhaustive-deps */  
   // }, [])
 
-  useEffect(() => {
-    if(questions) {
-      console.log(questions)
-    }
-    if(leaderboard) {
-      console.log(leaderboard)
-    }
-    if(published) {
-      console.log(published)
-    }
-  }, [questions, leaderboard, published])
+  // useEffect(() => {
+  //   fetchData('http://localhost:8000/categorysearch/?category=parks', setQuestions)
+  //   /* eslint-disable react-hooks/exhaustive-deps */
+  // }, [])
   
   return (
     <div className="App">

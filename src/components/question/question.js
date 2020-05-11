@@ -1,9 +1,11 @@
 import React from "react";
+import { useSelector } from 'react-redux';
 import './question.scss'
 
 function Question() {
+  const questionData = useSelector(state => state.questionReducer.questionData)
   return <div className="question-box">
-    <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa ducimus magni ad ipsa! Itaque ab aspernatur porro explicabo cupiditate commodi a sit voluptatibus!</div>
+    <div>{questionData.question}</div>
   </div>;
 }
 
