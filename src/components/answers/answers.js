@@ -1,19 +1,28 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import Choice from '../choice/choice'
-import './answers.scss';
+import React from "react";
+import { useSelector } from "react-redux";
+import shuffleArray from "./../../helpers/shuffleArray";
+import Choice from "../choice/choice";
+import "./answers.scss";
 
 function Answers() {
-  const questionData = useSelector(state => state.questionReducer.questionData)
+  const questionData = useSelector(
+    (state) => state.questionReducer.questionData
+  );
+  let choicesArray = shuffleArray([
+    { choice: questionData.choice1, correct: true },
+    { choice: questionData.choice2, correct: false },
+    { choice: questionData.choice3, correct: false },
+    { choice: questionData.choice4, correct: false },
+  ]);
 
-  return(
+  return (
     <div className="answers">
-      <Choice question={questionData && questionData.choice1}/>
-      <Choice question={questionData && questionData.choice2}/>
-      <Choice question={questionData && questionData.choice3}/>
-      <Choice question={questionData && questionData.choice4}/>
+      <Choice question={choicesArray[0].choice} />
+      <Choice question={choicesArray[1].choice} />
+      <Choice question={choicesArray[2].choice} />
+      <Choice question={choicesArray[3].choice} />
     </div>
-  )
+  );
 }
 
 export default Answers;

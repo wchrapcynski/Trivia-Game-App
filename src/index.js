@@ -3,18 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { createStore, combineReducers, applyMiddleware } from 'redux';
-import questionReducer from './store/questionReducer'
+import { createStore, applyMiddleware } from 'redux';
+import reducer from './store/index'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
-import leaderboardReducer from './store/leaderboardReducer'
 
-const store = createStore(combineReducers({
-  questionReducer,
-  leaderboardReducer
-}),
-  applyMiddleware(thunk)
-);
+const store = createStore(reducer, applyMiddleware(thunk));
 
 ReactDOM.render(
   <React.StrictMode>

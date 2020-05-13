@@ -1,15 +1,16 @@
 const initialState = {
-  questionData: {}
+  questionData: {},
 };
 
 function Reducer(state = initialState, action) {
-  switch(action.type) {
-    case "UPDATE" : 
-      return { questionData: action.payload};
-    case "CLEAR":
-      return {questionData: null};
-    default: return state; 
+  switch (action.type) {
+    case "UPDATE_QUESTION_DATA":
+      return { questionData: action.payload };
+    case "CLEAR_QUESTION_DATA":
+      return { questionData: null };
+    default:
+      return state;
   }
 }
 
-export default Reducer
+export default Reducer;

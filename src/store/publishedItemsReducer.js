@@ -1,15 +1,16 @@
 const initialState = {
-  publishedItems: null
+  publishedItems: null,
 };
 
 function Reducer(state = initialState, action) {
-  switch(action.type) {
-    case "UPDATE" : 
-      return { publishedItems: action.payload  };
-    case "CLEAR":
-      return {publishedItems: null};
-    default: return state; 
+  switch (action.type) {
+    case "UPDATE_PUBLISHED_IDS":
+      return { publishedItems: action.payload };
+    case "CLEAR_PUBLISHED_IDS":
+      return { publishedItems: null };
+    default:
+      return state;
   }
 }
 
-export default Reducer
+export default Reducer;
