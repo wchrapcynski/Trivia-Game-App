@@ -3,7 +3,6 @@ import shuffleArray from "../helpers/shuffleArray";
 export function setQuestionData(data) {
   return { type: "UPDATE_QUESTION_DATA", payload: data };
 }
-
 export function fetchQuestionData(url, apiOptions, id = "") {
   return (dispatch) => {
     fetch(url + id, apiOptions)
@@ -16,7 +15,6 @@ export function fetchQuestionData(url, apiOptions, id = "") {
 export function setPublishedIds(data) {
   return { type: "UPDATE_PUBLISHED_IDS", payload: data };
 }
-
 export function fetchPublishedIds(url, apiOptions) {
   return (dispatch) => {
     fetch(url, apiOptions)
@@ -28,8 +26,7 @@ export function fetchPublishedIds(url, apiOptions) {
 
 export function setNextQuestion(data) {
   return { type: "SET_NEXT_QUESTION", payload: data };
-}
-
+} 
 export function nextQuestion(currentQuestion) {
   return (dispatch) => {
     dispatch(setNextQuestion(currentQuestion + 1))
