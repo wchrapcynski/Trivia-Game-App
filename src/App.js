@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Logo from "./images/logo2.png";
 import "./App.scss";
-import * as fetchActions from "./actions/fetchActions";
+import * as questionActions from "./actions/questionActions";
 import { Question, Answers, Navigation } from "./components/appComponents";
 
 function App() {
@@ -12,9 +12,6 @@ function App() {
     headers: { Authorization: "Token " + process.env.REACT_APP_TRIVIA_API_KEY },
   };
   const baseApiUrl = "http://localhost:8000";
-  const publishedIDList = useSelector(
-    (state) => state.publishedItemsReducer.publishedItems
-  );
   const apiEndPoints = {
     questionList: baseApiUrl + "/trivia/",
     question: baseApiUrl + "/question/",
@@ -22,22 +19,28 @@ function App() {
     leaderboard: baseApiUrl + "/leaderboard/",
     published: baseApiUrl + "/published/",
   };
-
-  const [questionNumber, setQuestionNumber] = useState(0)
-
+  const { publishedItems, currentQuestion } = useSelector(
+    (state) => state.questionReducer
+  );
+  
   const setPublishedIds = () => {
     dispatch(
-      fetchActions.fetchPublishedIds(apiEndPoints.published, apiAccessOptions)
+      questionActions.fetchPublishedIds(
+        apiEndPoints.published,
+        apiAccessOptions
+      )
     );
-  }
+  };
 
-  const setQuestionData = () =>  {
-    dispatch(fetchActions.fetchQuestionData(apiEndPoints.question, apiAccessOptions, publishedIDList[questionNumber]));
-  }
-
-  const nextQuestion = () => {
-    setQuestionNumber(questionNumber + 1)
-  }
+  const setQuestionData = () => {
+      dispatch(
+        questionActions.fetchQuestionData(
+          apiEndPoints.question,
+          apiAccessOptions,
+          publishedItems[currentQuestion]
+        )
+      );
+  };
 
   useEffect(() => {
     setPublishedIds();
@@ -45,10 +48,10 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if(publishedIDList) {
+    if (publishedItems) {
       setQuestionData();
     }
-  }, [publishedIDList])
+  }, [publishedItems, currentQuestion]);
 
   // useEffect(() => {
   //   fetchData('http://localhost:8000/categorysearch/?category=parks', setQuestions)

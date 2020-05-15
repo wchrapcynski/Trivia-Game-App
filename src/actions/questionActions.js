@@ -1,4 +1,4 @@
-import shuffleArray from '../helpers/shuffleArray'
+import shuffleArray from "../helpers/shuffleArray";
 
 export function setQuestionData(data) {
   return { type: "UPDATE_QUESTION_DATA", payload: data };
@@ -24,4 +24,14 @@ export function fetchPublishedIds(url, apiOptions) {
       .then((response) => dispatch(setPublishedIds(shuffleArray(response))))
       .catch((error) => console.log("Data was not received"));
   };
+}
+
+export function setNextQuestion(data) {
+  return { type: "SET_NEXT_QUESTION", payload: data };
+}
+
+export function nextQuestion(currentQuestion) {
+  return (dispatch) => {
+    dispatch(setNextQuestion(currentQuestion + 1))
+  }
 }
