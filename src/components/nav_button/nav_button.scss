@@ -1,6 +1,6 @@
 @import './../../styles/common.scss';
 
-.nav_button {
+.nav_button__normal {
   background-image: linear-gradient(rgb(139, 202, 230), $blue-light);
   border: 1px double $blue-light;
   font-family: $font-main;
@@ -15,6 +15,11 @@
   padding: .2em .4em .3em .4em;
   margin: 0.1em 0.5em;
   max-width: 6em;
+}
+
+.nav_button__control {
+  background-image: radial-gradient(rgba(82, 184, 71, 0.92) 60%, #54b948 40%);
+  border: 1px double #54b948;
 }
 
 .nav_button + .nav_button + .nav_button {

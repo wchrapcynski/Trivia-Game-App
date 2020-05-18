@@ -18,10 +18,10 @@ function Navigation() {
 
   return (
     <div className="navigation">
-      <NavButton label="Score 0/10" />
-      <NavButton label="Good Luck!" />
+      <NavButton label="Score 0/10" classType="normal" />
+      <NavButton label="Good Luck!" classType="normal" />
       <div onClick={nextQuestion}>
-        <NavButton label="Start Game" />
+        <NavButton label="Start Game" classType="control" />
       </div>
     </div>
   );

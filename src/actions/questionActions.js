@@ -5,9 +5,9 @@ function setUpQuestionData(data) {
     question: data.question,
     choices: shuffleArray([
       { choice: data.choice1, correct: true },
-      { choice: data.choice2, correct: true },
-      { choice: data.choice3, correct: true },
-      { choice: data.choice4, correct: true },
+      { choice: data.choice2, correct: false },
+      { choice: data.choice3, correct: false },
+      { choice: data.choice4, correct: false },
     ])
   };
   return questionData;
@@ -44,5 +44,14 @@ export function setNextQuestion(data) {
 export function nextQuestion(currentQuestion) {
   return (dispatch) => {
     dispatch(setNextQuestion(currentQuestion + 1));
+  };
+}
+
+export function setCurrentQuestionCorrect(data) {
+  return {type: "SET_CURRENT_QUESTION_CURRECT", payload: data}
+}
+export function CurrentQuestionCorrect(isItTrue) {
+  return (dispatch) => {
+    dispatch(setCurrentQuestionCorrect(isItTrue))
   };
 }

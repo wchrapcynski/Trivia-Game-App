@@ -4,16 +4,26 @@ import Choice from "../choice/choice";
 import "./answers.scss";
 
 function Answers() {
-  const choiceData = useSelector(
-    (state) => state.questionReducer.choices
-  );
+  const choiceData = useSelector((state) => state.questionReducer.choices);
 
   return (
     <div className="answers">
-      <Choice question={choiceData && choiceData[0].choice} />
-      <Choice question={choiceData && choiceData[1].choice} />
-      <Choice question={choiceData && choiceData[2].choice} />
-      <Choice question={choiceData && choiceData[3].choice} />
+      <Choice
+        choice={choiceData && choiceData[0].choice}
+        correct={choiceData && choiceData[0].correct}
+      />
+      <Choice
+        choice={choiceData && choiceData[1].choice}
+        correct={choiceData && choiceData[1].correct}
+      />
+      <Choice
+        choice={choiceData && choiceData[2].choice}
+        correct={choiceData && choiceData[2].correct}
+      />
+      <Choice
+        choice={choiceData && choiceData[3].choice}
+        correct={choiceData && choiceData[3].correct}
+      />
     </div>
   );
 }
