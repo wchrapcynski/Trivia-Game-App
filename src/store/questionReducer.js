@@ -1,5 +1,8 @@
+import shuffleArray from "./../helpers/shuffleArray";
+
 const initialState = {
-  questionData: {},
+  question: "",
+  choices: null,
   publishedItems: null,
   publishedItemsLength: 0,
   currentQuestion: 0
@@ -8,7 +11,16 @@ const initialState = {
 function Reducer(state = initialState, action) {
   switch (action.type) {
     case "UPDATE_QUESTION_DATA":
-      return { ...state, questionData: action.payload };
+      return {
+        ...state,
+        question: action.payload.question,
+        choices: shuffleArray([
+          { choice: action.payload.choice1, correct: true },
+          { choice: action.payload.choice2, correct: false },
+          { choice: action.payload.choice3, correct: false },
+          { choice: action.payload.choice4, correct: false },
+        ]),
+      };
     case "UPDATE_PUBLISHED_IDS":
       return { ...state, publishedItems: action.payload, publishedItemsLength: action.payload.length };
     case "SET_NEXT_QUESTION":
