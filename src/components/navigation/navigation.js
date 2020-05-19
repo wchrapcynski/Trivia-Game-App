@@ -9,7 +9,7 @@ function Navigation() {
   const { currentQuestion, publishedItemsLength } = useSelector(
     (state) => state.questionReducer
   );
-
+  const { hasGameStarted } = useSelector((state) => state.gameReducer);
   const nextQuestion = () => {
     if (currentQuestion + 1 < publishedItemsLength) {
       dispatch(questionActions.nextQuestion(currentQuestion));
@@ -19,7 +19,7 @@ function Navigation() {
   return (
     <div className="navigation">
       <NavButton label="Score 0/10" classType="normal" />
-      <NavButton label="Good Luck!" classType="normal" />
+      <NavButton label={!hasGameStarted ? "Good Luck!" : "Choose One!"} classType="normal" />
       <div onClick={nextQuestion}>
         <NavButton label="Start Game" classType="control" />
       </div>

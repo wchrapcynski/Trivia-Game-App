@@ -50,8 +50,8 @@ export function nextQuestion(currentQuestion) {
 export function setCurrentQuestionCorrect(data) {
   return {type: "SET_CURRENT_QUESTION_CURRECT", payload: data}
 }
-export function CurrentQuestionCorrect(isItTrue) {
+export function CurrentQuestionCorrect(bool) {
   return (dispatch) => {
-    dispatch(setCurrentQuestionCorrect(isItTrue))
+    dispatch(setCurrentQuestionCorrect(bool))
   };
 }

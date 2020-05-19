@@ -2,7 +2,7 @@ export function setLeaderboardData(data) {
   return { type: "UPDATE_LEADERBOARD_DATA", payload: data };
 }
 
-export function fetchQuestionData(url, apiOptions) {
+export function fetchLeaderboardData(url, apiOptions) {
   return (dispatch) => {
     fetch(url, apiOptions)
       .then((response) => response.json())

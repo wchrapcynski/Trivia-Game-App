@@ -1,21 +1,24 @@
-import React from 'react';
-import './choice.scss';
+import React from "react";
+import { useDispatch } from "react-redux";
+import * as questionActions from "./../../actions/questionActions";
+import "./choice.scss";
 
 function Choice(props) {
+  const dispatch = useDispatch();
 
   const clickHandle = () => {
-    if(props.correct === true) {
-      console.log("You are correct!")
+    if (props.correct === true) {
+      dispatch(questionActions.CurrentQuestionCorrect(true))
     } else {
-      console.log("You are wrong!")
+      dispatch(questionActions.CurrentQuestionCorrect(false))
     }
-  }
+  };
 
-  return(
+  return (
     <div className="choice" onClick={clickHandle}>
       {props.choice}
     </div>
-  )
+  );
 }
 
 export default Choice;
