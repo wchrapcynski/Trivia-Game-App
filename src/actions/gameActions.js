@@ -18,6 +18,16 @@ export function getIsGameEnded(bool) {
   }
 }
 
+export function isCorrect(data) {
+  return {type: "UPDATE_IS_CORRECT", payload: data}
+}
+
+export function updateIsCorrect(bool) {
+  return(dispatch) => {
+    dispatch(isCorrect(bool))
+  }
+}
+
 export function setScore(data) {
   return {type: "UDPATE_SCORE", payload: data}
 }

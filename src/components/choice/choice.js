@@ -1,11 +1,11 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as questionActions from "./../../actions/questionActions";
 import "./choice.scss";
 
 function Choice(props) {
   const dispatch = useDispatch();
-
+  const { hasGameStarted } = useSelector((state) => state.gameReducer);
   const clickHandle = () => {
     if (props.correct === true) {
       dispatch(questionActions.CurrentQuestionCorrect(true))
@@ -16,7 +16,7 @@ function Choice(props) {
 
   return (
     <div className="choice" onClick={clickHandle}>
-      {props.choice}
+      {hasGameStarted ? props.choice : ""}
     </div>
   );
 }
