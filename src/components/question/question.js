@@ -9,14 +9,16 @@ function Question() {
   );
   return (
     <div className="question-box">
-      <div>
-      <p>{!hasGameStarted ? "The Current High Score is: " : "" }</p>
+      {!hasGameStarted && (
+        <p className="question-box__high_score">The Current High Score is</p>
+      )}
+      <p className="question-box__question">
         {!hasGameStarted
           ? "Welcome to Mouse Fan Trivia! How many questions can you answer?"
           : hasGameEnded
           ? "Game Over!"
           : questionData}
-      </div>
+      </p>
     </div>
   );
 }
