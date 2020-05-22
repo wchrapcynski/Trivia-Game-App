@@ -21,9 +21,11 @@ function Navigation() {
   } = useSelector((state) => state.gameReducer);
 
   const onClickHandler = () => {
+    // Starts game
     if (!hasGameStarted) {
       dispatch(gameActions.updateGameStarted(true));
     }
+    // Takes player to the next question after current question has been answered
     if (
       currentQuestion + 1 < publishedItemsLength &&
       !isQuestionActive &&
@@ -33,6 +35,7 @@ function Navigation() {
       dispatch(gameActions.setIsQuestionActive(true));
       dispatch(gameActions.updateIsCorrect(null));
     }
+    // Checks to see if all questions have been answered to end the game
     if (currentQuestion + 1 === publishedItemsLength) {
       dispatch(gameActions.updateGameStarted(false));
       dispatch(gameActions.updateGameEnded(true));
@@ -44,6 +47,7 @@ function Navigation() {
         )
       );
     }
+    // Resets the game
     if (hasGameEnded) {
       dispatch(gameActions.resetGame());
       dispatch(questionActions.resetQuestionData());
