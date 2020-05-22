@@ -1,22 +1,35 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import * as questionActions from "./../../actions/questionActions";
+import * as gameActions from "./../../actions/gameActions";
 import "./choice.scss";
 
 function Choice(props) {
   const dispatch = useDispatch();
-  const { hasGameStarted } = useSelector((state) => state.gameReducer);
+  const { hasGameStarted, isQuestionActive, score, highScore } = useSelector(
+    (state) => state.gameReducer
+  );
   const clickHandle = () => {
-    if (props.correct === true) {
-      dispatch(questionActions.CurrentQuestionCorrect(true))
-    } else {
-      dispatch(questionActions.CurrentQuestionCorrect(false))
+    if (isQuestionActive) {
+      if (props.correct) {
+        dispatch(gameActions.updateIsCorrect(true));
+        dispatch(gameActions.updateScore(score + 1));
+      } else {
+        dispatch(gameActions.updateIsCorrect(false));
+      }
+      dispatch(gameActions.updateIsQuestionActive(false));
     }
   };
 
+  useEffect(() => {
+    if (score > highScore) {
+      dispatch(gameActions.updateHighScore(score));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps 
+  }, [score])
+
   return (
     <div className="choice" onClick={clickHandle}>
-      {hasGameStarted ? props.choice : ""}
+      {hasGameStarted && props.choice}
     </div>
   );
 }

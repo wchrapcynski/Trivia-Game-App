@@ -4,7 +4,6 @@ const initialState = {
   publishedItems: null,
   publishedItemsLength: 0,
   currentQuestion: 0,
-  currentQuestionCorrect: null
 };
 
 function Reducer(state = initialState, action) {
@@ -16,11 +15,22 @@ function Reducer(state = initialState, action) {
         choices: action.payload.choices,
       };
     case "UPDATE_PUBLISHED_IDS":
-      return { ...state, publishedItems: action.payload, publishedItemsLength: action.payload.length };
+      return {
+        ...state,
+        publishedItems: action.payload,
+        publishedItemsLength: action.payload.length,
+      };
     case "SET_NEXT_QUESTION":
-      return { ...state, currentQuestion: action.payload }
-    case "SET_CURRENT_QUESTION_CURRECT":
-      return { ...state, currentQuestionCorrect: action.payload}
+      return { ...state, currentQuestion: action.payload };
+    case "RESET_GAME":
+      return {
+        ...state,
+        question: "",
+        choices: null,
+        publishedItems: null,
+        publishedItemsLength: 0,
+        currentQuestion: 0,
+      };
     default:
       return state;
   }

@@ -7,39 +7,73 @@ import "./navigation.scss";
 
 function Navigation() {
   const dispatch = useDispatch();
-  const message = ["Good Luck!", "Pick One!", "That's Wrong!", "That's Right!"];
   const { currentQuestion, publishedItemsLength } = useSelector(
     (state) => state.questionReducer
   );
-  const { hasGameStarted, isQuestionActive, isCorrect } = useSelector(
-    (state) => state.gameReducer
-  );
+  const {
+    hasGameStarted,
+    hasGameEnded,
+    isQuestionActive,
+    isCorrect,
+    score,
+    apiEndPoints,
+    apiAccessOptions,
+  } = useSelector((state) => state.gameReducer);
+
   const onClickHandler = () => {
     if (!hasGameStarted) {
       dispatch(gameActions.updateGameStarted(true));
     }
-    if (currentQuestion + 1 < publishedItemsLength) {
+    if (
+      currentQuestion + 1 < publishedItemsLength &&
+      !isQuestionActive &&
+      hasGameStarted
+    ) {
       dispatch(questionActions.nextQuestion(currentQuestion));
+      dispatch(gameActions.setIsQuestionActive(true));
+      dispatch(gameActions.updateIsCorrect(null));
+    }
+    if (currentQuestion + 1 === publishedItemsLength) {
+      dispatch(gameActions.updateGameStarted(false));
+      dispatch(gameActions.updateGameEnded(true));
+      dispatch(gameActions.updateIsCorrect(null));
+      dispatch(
+        questionActions.fetchPublishedIds(
+          apiEndPoints.published,
+          apiAccessOptions
+        )
+      );
+    }
+    if (hasGameEnded) {
+      dispatch(gameActions.resetGame());
+      dispatch(questionActions.resetQuestionData());
     }
   };
 
   return (
     <div className="navigation">
-      <NavButton label="Score 0/10" classType="normal" />
+      <NavButton label={`Score ${score}/10`} classType="normal" />
       <NavButton
         label={
-          !hasGameStarted
-            ? message[0]
+          hasGameEnded
+            ? "Game Over!"
+            : !hasGameStarted
+            ? "Good Luck!"
             : isCorrect === null
-            ? message[1]
-            : isCorrect === false
-            ? message[2]
-            : message[3]
+            ? "Pick One!"
+            : isCorrect === true
+            ? "That's Right!"
+            : "That's Wrong!"
         }
         classType="normal"
       />
       <div onClick={onClickHandler}>
-        <NavButton label={!hasGameStarted ? "Start Game" : isQuestionActive ? "Next" : "Next"} classType="control" />
+        <NavButton
+          label={
+            !hasGameStarted ? "Start Game" : isQuestionActive ? "Next" : "Next"
+          }
+          classType="control"
+        />
       </div>
     </div>
   );

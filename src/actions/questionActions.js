@@ -8,7 +8,7 @@ function setUpQuestionData(data) {
       { choice: data.choice2, correct: false },
       { choice: data.choice3, correct: false },
       { choice: data.choice4, correct: false },
-    ])
+    ]),
   };
   return questionData;
 }
@@ -47,11 +47,12 @@ export function nextQuestion(currentQuestion) {
   };
 }
 
-export function setCurrentQuestionCorrect(data) {
-  return {type: "SET_CURRENT_QUESTION_CURRECT", payload: data}
+export function resetQuestionData() {
+  return { type: "RESET_GAME"};
 }
-export function CurrentQuestionCorrect(bool) {
-  return (dispatch) => {
-    dispatch(setCurrentQuestionCorrect(bool))
-  };
+
+export function restartGame() {
+  return(dispatch) => {
+    dispatch(resetQuestionData())
+  }
 }

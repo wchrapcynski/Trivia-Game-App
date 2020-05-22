@@ -9,7 +9,7 @@ export function updateGameStarted(bool) {
 }
 
 export function setHasGameEnded(data) {
-  return { type: "UDPATE_HAS_GAME_STARTED", payload: data };
+  return { type: "UDPATE_HAS_GAME_ENDED", payload: data };
 }
 
 export function updateGameEnded(bool) {
@@ -46,4 +46,24 @@ export function updateScore(score) {
   return (dispatch) => {
     dispatch(setScore(score));
   };
+}
+
+export function setHighScore(data) {
+  return { type: "UDPATE_HIGH_SCORE", payload: data };
+}
+
+export function updateHighScore(score) {
+  return (dispatch) => {
+    dispatch(setHighScore(score))
+  }
+}
+
+export function setRestGame() {
+  return { type: "RESET_GAME"};
+}
+
+export function resetGame() {
+  return(dispatch) => {
+    dispatch(setRestGame())
+  }
 }

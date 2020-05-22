@@ -7,22 +7,13 @@ import { Question, Answers, Navigation } from "./components/appComponents";
 
 function App() {
   const dispatch = useDispatch();
-  const apiAccessOptions = {
-    method: "GET",
-    headers: { Authorization: "Token " + process.env.REACT_APP_TRIVIA_API_KEY },
-  };
-  const baseApiUrl = "http://localhost:8000";
-  const apiEndPoints = {
-    questionList: baseApiUrl + "/trivia/",
-    question: baseApiUrl + "/question/",
-    categorySearch: baseApiUrl + "/categorysearch/",
-    leaderboard: baseApiUrl + "/leaderboard/",
-    published: baseApiUrl + "/published/",
-  };
   const { publishedItems, currentQuestion } = useSelector(
     (state) => state.questionReducer
   );
-  
+  const { apiAccessOptions, apiEndPoints } = useSelector(
+    (state) => state.gameReducer
+  );
+
   const setPublishedIds = () => {
     dispatch(
       questionActions.fetchPublishedIds(
@@ -33,13 +24,13 @@ function App() {
   };
 
   const setQuestionData = () => {
-      dispatch(
-        questionActions.fetchQuestionData(
-          apiEndPoints.question,
-          apiAccessOptions,
-          publishedItems[currentQuestion]
-        )
-      );
+    dispatch(
+      questionActions.fetchQuestionData(
+        apiEndPoints.question,
+        apiAccessOptions,
+        publishedItems[currentQuestion]
+      )
+    );
   };
 
   useEffect(() => {
