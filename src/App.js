@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Logo from "./images/logo2.png";
+import Logo from "./images/logo.svg";
 import "./App.scss";
 import * as questionActions from "./actions/questionActions";
 import { Question, Answers, Navigation } from "./components/appComponents";

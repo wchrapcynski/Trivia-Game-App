@@ -38,7 +38,7 @@ function Choice(props) {
 
   return (
     <div className="choice" onClick={clickHandle}>
-      <p className={!isQuestionActive && !clicked && "choice-disable"}>
+      <p className={!isQuestionActive && !clicked ? "choice-disable" : "choice-active"}>
         {hasGameStarted && props.choice}
       </p>
     </div>

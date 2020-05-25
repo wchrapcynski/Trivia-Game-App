@@ -4,7 +4,6 @@
   background-image: linear-gradient(rgb(139, 202, 230), $blue-light);
   border: 1px double $blue-light;
   font-family: $font-main;
-  @include font-black-shadow();
   color: $white;
   font-size: 0.9em;
   box-shadow: inset 0 0 2px 0 rgba(255, 255, 255, 0.4),
@@ -72,6 +71,7 @@
 }
 
 .button-disabled {
+  text-shadow: 0;
   opacity: 0.5;
   transition: 0.8s ease;
   -webkit-transition: 0.8s ease;
@@ -81,6 +81,7 @@
 }
 
 .button-enabled {
+  text-shadow: 2px 2px 2px black;
   opacity: 1;
   transition: 0.8s ease;
   -webkit-transition: 0.8s ease;

@@ -15,15 +15,15 @@
   justify-content: center;
   align-items: center;
   color: $white;
-  @include font-black-shadow();
   margin: 0.5em 0;
   padding: 0.4em 0.1em 0.5em 0.1em;
   text-align: center;
   cursor: url("./../../images/hand.png"), auto;
-} 
+}
 
-.choice-disable {
-  opacity: 0.5;
+.choice-active {
+  text-shadow: 2px 2px 2px black;
+  opacity: 1;
   transition: 0.5s ease;
   -webkit-transition: 0.5s ease;
   -moz-transition: 0.5s ease;
@@ -31,11 +31,12 @@
   -o-transition: 0.5s ease;
 }
 
-.choice-hidden {
-  opacity: 0;
+.choice-disable {
+  text-shadow: 0;
+  opacity: 0.5;
   transition: 0.5s ease;
   -webkit-transition: 0.5s ease;
   -moz-transition: 0.5s ease;
   -ms-transition: 0.5s ease;
-  -o-transition: 0.5s eas
+  -o-transition: 0.5s ease;
 }
