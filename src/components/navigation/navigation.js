@@ -60,6 +60,7 @@ function Navigation() {
         label={`Score ${score}/10`}
         classType="normal"
         isCorrect={null}
+        disabled={false}
       />
       <NavButton
         label={
@@ -75,6 +76,7 @@ function Navigation() {
         }
         classType="normal"
         isCorrect={isCorrect}
+        disabled={false}
       />
       <div onClick={onClickHandler}>
         <NavButton
@@ -83,6 +85,7 @@ function Navigation() {
           }
           classType="control"
           isCorrect={null}
+          disabled={isQuestionActive}
         />
       </div>
     </div>

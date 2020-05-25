@@ -17,7 +17,9 @@ function Question() {
       <p className="question-box__question">
         {!hasGameStarted && !hasGameEnded
           ? "Welcome to Mouse Fan Trivia! How many questions can you answer?"
-          : hasGameEnded ? "Game Over! Click on Start Game to try again!" : questionData}
+          : hasGameEnded
+          ? "Game Over! Click on Start Game to try again!"
+          : questionData}
       </p>
     </div>
   );

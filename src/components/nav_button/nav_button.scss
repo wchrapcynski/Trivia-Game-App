@@ -19,6 +19,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: url("./../../images/hand.png"), auto;
 }
 
 .nav_button__control {
@@ -64,9 +65,26 @@
 }
 
 .flashing-green {
-  
   animation-name: flashingGreen;
   animation-iteration-count: infinite;
   animation-timing-function: ease-in-out;
   animation-duration: 1.4s;
+}
+
+.button-disabled {
+  opacity: 0.5;
+  transition: 0.8s ease;
+  -webkit-transition: 0.8s ease;
+  -moz-transition: 0.8s ease;
+  -ms-transition: 0.8s ease;
+  -o-transition: 0.8s ease;
+}
+
+.button-enabled {
+  opacity: 1;
+  transition: 0.8s ease;
+  -webkit-transition: 0.8s ease;
+  -moz-transition: 0.8s ease;
+  -ms-transition: 0.8s ease;
+  -o-transition: 0.8s ease;
 }
