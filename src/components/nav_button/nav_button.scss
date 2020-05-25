@@ -13,9 +13,9 @@
   border-radius: 25px;
   text-align: center;
   padding: .3em .5em;
-  margin: 0.1em 0.5em;
+  margin: 0.1em 0.3em;
   height: 4em;
-  width: 4.5em;
+  width: 5.5em;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -24,4 +24,49 @@
 .nav_button__control {
   background-image: radial-gradient(rgba(82, 184, 71, 0.92) 60%, #54b948 40%);
   border: 1px double #54b948;
+}
+
+@keyframes flashingRed {
+  0% {
+    color: white;
+    text-shadow: 2px 2px 2px black;
+  }
+  30% {
+    color: red;
+    text-shadow: 1px 1px 2px black;
+  }
+  50% {
+    color: white;
+    text-shadow: 2px 2px 2px black;
+  }
+}
+
+@keyframes flashingGreen {
+  0% {
+    color: white;
+    text-shadow: 2px 2px 2px black;
+  }
+  30% {
+    color: #54b948;
+    text-shadow: 1px 1px 2px black;
+  } 
+  50% {
+    color: white;
+    text-shadow: 2px 2px 2px black;
+  }
+}
+
+.flashing-red {
+  animation-name: flashingRed;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  animation-duration: 1.4s;
+}
+
+.flashing-green {
+  
+  animation-name: flashingGreen;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  animation-duration: 1.4s;
 }

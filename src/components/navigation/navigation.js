@@ -56,7 +56,11 @@ function Navigation() {
 
   return (
     <div className="navigation">
-      <NavButton label={`Score ${score}/10`} classType="normal" />
+      <NavButton
+        label={`Score ${score}/10`}
+        classType="normal"
+        isCorrect={null}
+      />
       <NavButton
         label={
           hasGameEnded
@@ -70,6 +74,7 @@ function Navigation() {
             : "That's Wrong!"
         }
         classType="normal"
+        isCorrect={isCorrect}
       />
       <div onClick={onClickHandler}>
         <NavButton
@@ -77,6 +82,7 @@ function Navigation() {
             !hasGameStarted ? "Start Game" : isQuestionActive ? "Next" : "Next"
           }
           classType="control"
+          isCorrect={null}
         />
       </div>
     </div>

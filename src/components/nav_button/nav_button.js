@@ -9,7 +9,16 @@ function Nav_Button(props) {
           ? "nav_button__normal nav_button__control"
           : "nav_button__normal"
       }>
-      {props.label}
+      <p
+        className={
+          props.isCorrect === null
+            ? ""
+            : props.isCorrect
+            ? "flashing-green"
+            : "flashing-red"
+        }>
+        {props.label}
+      </p>
     </div>
   );
 }
