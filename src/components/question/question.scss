@@ -1,25 +1,39 @@
 @import './../../styles/common.scss';
 
 .question-box {
+  text-shadow: 2px 2px 2px black;
   border-radius: 25px;
   width: 95%;
   height: 90%;
   line-height: 1.4em;
   padding: 0.5em;
-  box-shadow: inset 0 0 2px 0 rgba(255, 255, 255, 0.4),
-    inset 0 0 5px 0 rgba(0, 0, 0, 0.4), inset 0 0 5px 5px rgba(0, 0, 0, 0.05),
-    2px 2px 4px 0 rgba(0, 0, 0, 0.25);
+  box-shadow: inset 0 0 2px 0 rgba(255, 255, 255, 0.4),    inset 0 0 5px 0 rgba(0, 0, 0, 0.4), inset 0 0 5px 5px rgba(0, 0, 0, 0.05),    2px 2px 4px 0 rgba(0, 0, 0, 0.25);
   background-image: linear-gradient(rgb(139, 202, 230), $blue-light);
   border: 1px double $blue-light;
   text-align: center;
   font-family: $font-main;
   font-size: 0.9em;
   color: $white;
-  @include font-black-shadow();
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.active {
+  animation-name: fadein;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  animation-duration: 0.3s;
 }
 
 .iscorrect {

@@ -25,7 +25,7 @@ function Question() {
       ) : hasGameEnded ? (
         <p>"Game Over! Click on Start Game to try again!"</p>
       ) : isCorrect === null ? (
-        <p>{questionData}</p>
+        <p className={isQuestionActive && "active"}>{questionData}</p>
       ) : isCorrect ? (
         <div className="iscorrect">
           <img className="iscorrect__img" src={right} alt="right" />
