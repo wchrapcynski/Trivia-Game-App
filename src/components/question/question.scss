@@ -46,6 +46,10 @@
   display: block;
   width: 90%;
   height: 90%;
+  animation-name: fadein;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  animation-duration: 0.08s;
 }
 
 @media (min-height: 800px) {

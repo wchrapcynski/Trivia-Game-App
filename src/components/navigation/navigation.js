@@ -20,12 +20,13 @@ function Navigation() {
     apiAccessOptions,
   } = useSelector((state) => state.gameReducer);
 
-  const onClickHandler = () => {
-    // Starts game
+  const checkStartGame = () => {
     if (!hasGameStarted) {
       dispatch(gameActions.updateGameStarted(true));
     }
-    // Takes player to the next question after current question has been answered
+  }
+
+  const checkNextQuestion = () => {
     if (
       currentQuestion + 1 < publishedItemsLength &&
       !isQuestionActive &&
@@ -35,7 +36,9 @@ function Navigation() {
       dispatch(gameActions.setIsQuestionActive(true));
       dispatch(gameActions.updateIsCorrect(null));
     }
-    // Checks to see if all questions have been answered to end the game
+  }
+
+  const checkIfEndOfQuestions = () => {
     if (currentQuestion + 1 === publishedItemsLength) {
       dispatch(gameActions.updateGameStarted(false));
       dispatch(gameActions.updateGameEnded(true));
@@ -47,11 +50,20 @@ function Navigation() {
         )
       );
     }
-    // Resets the game
+  }
+
+  const checkRestGame = () => {
     if (hasGameEnded) {
       dispatch(gameActions.resetGame());
       dispatch(questionActions.resetQuestionData());
     }
+  }
+
+  const onClickHandler = () => {
+    checkStartGame();
+    checkNextQuestion();
+    checkIfEndOfQuestions();
+    checkRestGame();
   };
 
   return (
