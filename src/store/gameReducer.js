@@ -5,7 +5,7 @@ const initialState = {
   isQuestionActive: true,
   isCorrect: null,
   score: 0,
-  highScore: 0,
+  highScore: localStorage.getItem("highscore"),
   apiEndPoints: {
     questionList: baseApiUrl + "/trivia/",
     question: baseApiUrl + "/question/",

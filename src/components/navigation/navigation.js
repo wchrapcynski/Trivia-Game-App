@@ -24,7 +24,7 @@ function Navigation() {
     if (!hasGameStarted) {
       dispatch(gameActions.updateGameStarted(true));
     }
-  }
+  };
 
   const checkNextQuestion = () => {
     if (
@@ -36,7 +36,7 @@ function Navigation() {
       dispatch(gameActions.setIsQuestionActive(true));
       dispatch(gameActions.updateIsCorrect(null));
     }
-  }
+  };
 
   const checkIfEndOfQuestions = () => {
     if (currentQuestion + 1 === publishedItemsLength) {
@@ -50,20 +50,20 @@ function Navigation() {
         )
       );
     }
-  }
+  };
 
-  const checkRestGame = () => {
+  const checkResetGame = () => {
     if (hasGameEnded) {
       dispatch(gameActions.resetGame());
       dispatch(questionActions.resetQuestionData());
     }
-  }
+  };
 
   const onClickHandler = () => {
     checkStartGame();
     checkNextQuestion();
     checkIfEndOfQuestions();
-    checkRestGame();
+    checkResetGame();
   };
 
   return (

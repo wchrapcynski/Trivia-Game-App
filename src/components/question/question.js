@@ -17,7 +17,7 @@ function Question() {
     <div className="question-box">
       {!hasGameStarted ? (
         <div>
-          <p>The Current High Score is: {highScore}</p>
+          <p>Your Current High Score is: {highScore ? highScore : "0"}</p>
           <p>
             "Welcome to Mouse Fan Trivia! How many questions can you answer?"
           </p>

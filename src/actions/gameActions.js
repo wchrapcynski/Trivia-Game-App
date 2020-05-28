@@ -55,6 +55,8 @@ export function setHighScore(data) {
 export function updateHighScore(score) {
   return (dispatch) => {
     dispatch(setHighScore(score))
+    localStorage.removeItem("highscore");
+    localStorage.setItem("highscore", score);
   }
 }
 
