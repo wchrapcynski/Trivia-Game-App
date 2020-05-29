@@ -19,11 +19,11 @@ function Question() {
         <div>
           <p>Your Current High Score is: {highScore ? highScore : "0"}</p>
           <p>
-            "Welcome to Mouse Fan Trivia! How many questions can you answer?"
+            Welcome to Mouse Fan Trivia! How many questions can you answer?
           </p>
         </div>
       ) : hasGameEnded ? (
-        <p>"Game Over! Click on Start Game to try again!"</p>
+        <p>Game Over! Click on Start Game to try again!</p>
       ) : isCorrect === null ? (
         <p className={isQuestionActive && "active"}>{questionData}</p>
       ) : isCorrect ? (

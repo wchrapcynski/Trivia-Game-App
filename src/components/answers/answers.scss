@@ -1,3 +1,9 @@
 .answers {
   width: 100%;
 }
+
+@media (min-width: 600px) {
+  .answers {
+    margin: 0 1em;
+  }
+}
