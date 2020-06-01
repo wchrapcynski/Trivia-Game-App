@@ -46,3 +46,9 @@
     font-size: 1.1em;
   }
 }
+
+@media (min-width: 1000px) and (min-height: 1000px) {
+  .choice {
+    font-size: 1.7em;
+  }
+}

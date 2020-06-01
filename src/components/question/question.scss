@@ -43,9 +43,9 @@
 }
 
 .iscorrect__img {
-  display: block;
   width: 90%;
   height: 90%;
+  display: block;
   animation-name: fadein;
   animation-iteration-count: 1;
   animation-timing-function: ease-in;
@@ -60,6 +60,22 @@
 
 @media (min-width: 600px) {
   .question-box {
-    font-size: 1.1em;
+    font-size: 1.2em;
+  }
+}
+
+@media (min-width: 1000px) {
+  .question-box {
+    font-size: 1.6em;
+  }
+}
+
+@media (min-width: 1000px) and (min-height: 1000px) {
+  .question-box {
+    font-size: 1.8em;
+  }
+  .iscorrect {
+    width: 50%;
+    height: 50%;
   }
 }
