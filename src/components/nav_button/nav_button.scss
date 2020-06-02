@@ -14,7 +14,7 @@
   padding: .3em .5em;
   margin: 0.1em 0.3em;
   height: 4em;
-  width: 5.5em;
+  width: 5.3em;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -88,16 +88,4 @@
   -moz-transition: 0.8s ease;
   -ms-transition: 0.8s ease;
   -o-transition: 0.8s ease;
-}
-
-@media (min-width: 600px) {
-  .nav_button__normal {
-    font-size: 1.1em;
-  }
-}
-
-@media (min-width: 1000px) and (min-height: 1000px) {
-  .nav_button__normal {
-    font-size: 1.6em;
-  }
 }

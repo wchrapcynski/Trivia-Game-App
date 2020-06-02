@@ -10,11 +10,8 @@
   background-image: linear-gradient(rgb(235, 199, 103), #f9bf19);
 }
 
-
 @media (min-width: 600px) {
   .navigation {
     flex-direction: column;
-    justify-content: space-around;
-    height: 93%;
   }
 }
