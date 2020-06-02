@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import right from "./../../images/right.svg";
 import wrong from "./../../images/wrong.svg";
+import LeaderBoard from './../leaderboard/leaderboard'
 import "./question.scss";
 
 function Question() {
@@ -15,6 +16,7 @@ function Question() {
   } = useSelector((state) => state.gameReducer);
   return (
     <div className="question-box">
+      <LeaderBoard />
       {!hasGameStarted ? (
         <div>
           <p>Your Current High Score is: {highScore ? highScore : "0"}</p>
