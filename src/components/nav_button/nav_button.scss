@@ -89,3 +89,9 @@
   -ms-transition: 0.8s ease;
   -o-transition: 0.8s ease;
 }
+
+@media (min-width: 600px) {
+  .nav_button__normal {
+    font-size: 1.1em;
+  }
+}
