@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import right from "./../../images/right.svg";
 import wrong from "./../../images/wrong.svg";
-import LeaderBoard from './../leaderboard/leaderboard'
+import LeaderBoard from "./../leaderboard/leaderboard";
 import "./question.scss";
 
 function Question() {
@@ -14,15 +14,17 @@ function Question() {
     isQuestionActive,
     isCorrect,
   } = useSelector((state) => state.gameReducer);
+  // const showLeaderboard = useSelector(
+  //   (state) => state.leaderboardReducer.leaderboardDisplay
+  // );
+
   return (
     <div className="question-box">
-      <LeaderBoard />
       {!hasGameStarted ? (
         <div>
           <p>Your Current High Score is: {highScore ? highScore : "0"}</p>
-          <p>
-            Welcome to Mouse Fan Trivia! How many questions can you answer?
-          </p>
+          <LeaderBoard />
+          <p>Welcome to Mouse Fan Trivia! How many questions can you answer?</p>
         </div>
       ) : hasGameEnded ? (
         <p>Game Over! Click on Start Game to try again!</p>

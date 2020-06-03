@@ -9,6 +9,7 @@ function LeaderBoard() {
     (state) => state.gameReducer
   );
   const { leaderboardData } = useSelector((state) => state.leaderboardReducer);
+  const [leaderboardDataMap, setLeaderboardDataMap] = useState();
 
   const setLeaderBoardData = () => {
     dispatch(
@@ -24,7 +25,26 @@ function LeaderBoard() {
     /* eslint-disable react-hooks/exhaustive-deps */
   }, []);
 
-  return <div className="leaderboard">{leaderboardData && leaderboardData[0].email}</div>;
+  useEffect(() => {
+    if (leaderboardData) {
+      setLeaderboardDataMap(
+        leaderboardData.map((data) => {
+          return (
+            <div key={data.id}>
+              {data.id}{") "}
+              {data.email.split("@")[0]} {" - "}
+              {data.score}{" - "}
+              {data.date}
+            </div>
+          );
+        })
+      );
+    }
+  }, [leaderboardData]);
+
+  return (
+    <div className="leaderboard">{leaderboardData && leaderboardDataMap}</div>
+  );
 }
 
 export default LeaderBoard;
