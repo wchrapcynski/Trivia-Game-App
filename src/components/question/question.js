@@ -14,29 +14,39 @@ function Question() {
     isQuestionActive,
     isCorrect,
   } = useSelector((state) => state.gameReducer);
-  // const showLeaderboard = useSelector(
-  //   (state) => state.leaderboardReducer.leaderboardDisplay
-  // );
+  const { leaderboardDisplay } = useSelector(
+    (state) => state.leaderboardReducer
+  );
 
   return (
     <div className="question-box">
-      {!hasGameStarted ? (
-        <div>
-          <p>Your Current High Score is: {highScore ? highScore : "0"}</p>
+      {leaderboardDisplay ? (
+        <div className="question-box__leaderboard">
+          Top 3 Players:
           <LeaderBoard />
-          <p>Welcome to Mouse Fan Trivia! How many questions can you answer?</p>
-        </div>
-      ) : hasGameEnded ? (
-        <p>Game Over! Click on Start Game to try again!</p>
-      ) : isCorrect === null ? (
-        <p className={isQuestionActive && "active"}>{questionData}</p>
-      ) : isCorrect ? (
-        <div className="iscorrect">
-          <img className="iscorrect__img" src={right} alt="right" />
         </div>
       ) : (
-        <div className="iscorrect">
-          <img className="iscorrect__img" src={wrong} alt="wrong" />
+        <div className="question-box__normal">
+          {!hasGameStarted ? (
+            <div>
+              <p>Your Current High Score is: {highScore ? highScore : "0"}</p>
+              <p>
+                Welcome to Mouse Fan Trivia! How many questions can you answer?
+              </p>
+            </div>
+          ) : hasGameEnded ? (
+            <p>Game Over! Click on Start Game to try again!</p>
+          ) : isCorrect === null ? (
+            <p className={isQuestionActive && "active"}>{questionData}</p>
+          ) : isCorrect ? (
+            <div className="iscorrect">
+              <img className="iscorrect__img" src={right} alt="right" />
+            </div>
+          ) : (
+            <div className="iscorrect">
+              <img className="iscorrect__img" src={wrong} alt="wrong" />
+            </div>
+          )}
         </div>
       )}
     </div>

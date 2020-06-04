@@ -18,6 +18,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.nav_button__nocursor {
+  cursor: unset;
+}
+
+.nav_button__cursor {
   cursor: url("./../../images/hand.png"), auto;
 }
 

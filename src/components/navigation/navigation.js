@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as questionActions from "./../../actions/questionActions";
 import * as gameActions from "./../../actions/gameActions";
+import * as leaderboardActions from "./../../actions/leaderboarActions"
 import NavButton from "./../nav_button/nav_button";
 import "./navigation.scss";
 
@@ -19,6 +20,7 @@ function Navigation() {
     apiEndPoints,
     apiAccessOptions,
   } = useSelector((state) => state.gameReducer);
+  const {leaderboardDisplay} = useSelector((state) => state.leaderboardReducer)
 
   const checkStartGame = () => {
     if (!hasGameStarted) {
@@ -59,7 +61,11 @@ function Navigation() {
     }
   };
 
-  const onClickHandler = () => {
+  const onclickHandlerLeaderBoard = () => {
+    dispatch(leaderboardActions.updateLeaderboardDisplay(!leaderboardDisplay))
+  }
+
+  const onClickHandlerNext = () => {
     checkStartGame();
     checkNextQuestion();
     checkIfEndOfQuestions();
@@ -68,12 +74,23 @@ function Navigation() {
 
   return (
     <div className="navigation">
-      <NavButton
-        label={`Score ${score}/10`}
-        classType="normal"
-        isCorrect={null}
-        disabled={false}
-      />
+      {hasGameStarted ? (
+        <NavButton
+          label={`Score ${score}/10`}
+          classType="normal"
+          isCorrect={null}
+          disabled={false}
+        />
+      ) : (
+        <div onClick={onclickHandlerLeaderBoard}>
+          <NavButton
+            label={`Top Players`}
+            classType="control"
+            isCorrect={true}
+            disabled={false}
+          />
+        </div>
+      )}
       <NavButton
         label={
           hasGameEnded
@@ -90,13 +107,13 @@ function Navigation() {
         isCorrect={isCorrect}
         disabled={false}
       />
-      <div onClick={onClickHandler}>
+      <div onClick={onClickHandlerNext}>
         <NavButton
           label={
             !hasGameStarted ? "Start Game" : isQuestionActive ? "Next" : "Next"
           }
           classType="control"
-          isCorrect={null}
+          isCorrect={!hasGameStarted ? true : null}
           disabled={isQuestionActive}
         />
       </div>

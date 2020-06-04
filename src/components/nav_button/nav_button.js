@@ -13,12 +13,15 @@ function Nav_Button(props) {
       }>
       <p
         className={
+          props.classType === "normal" ? "button-enabled nav_button__nocursor" :
           (props.isCorrect === null
             ? ""
             : props.isCorrect
             ? "flashing-green "
             : "flashing-red ") +
-          (hasGameStarted && props.disabled ? "button-disabled" : "button-enabled")
+          (hasGameStarted && props.disabled
+            ? "button-disabled nav_button__nocursor"
+            : "button-enabled nav_button__cursor")
         }>
         {props.label}
       </p>

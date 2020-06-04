@@ -28,10 +28,10 @@ function LeaderBoard() {
   useEffect(() => {
     if (leaderboardData) {
       setLeaderboardDataMap(
-        leaderboardData.map((data) => {
+        leaderboardData.map((data, key) => {
           return (
             <div key={data.id}>
-              {data.id}{") "}
+              {key + 1}{") "}
               {data.email.split("@")[0]} {" - "}
               {data.score}{" - "}
               {data.date}
