@@ -32,7 +32,7 @@ function LeaderBoard() {
           return (
             <div key={data.id}>
               {key + 1}{") "}
-              {data.email.split("@")[0]} {" - "}
+              {(data.initials !== "***"? data.initials : data.email.substring(0,3)).toUpperCase()} {" - "}
               {data.score}{" - "}
               {data.date}
             </div>
