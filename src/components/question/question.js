@@ -20,15 +20,16 @@ function Question() {
 
   return (
     <div className="question-box">
-      {leaderboardDisplay ? (
-        <div className="question-box__leaderboard">
+      {!hasGameStarted && leaderboardDisplay ? (
+        <div className="question-box__leaderboard active">
           Top 3 Players:
+          <hr />
           <LeaderBoard />
         </div>
       ) : (
         <div className="question-box__normal">
           {!hasGameStarted ? (
-            <div>
+            <div className="active">
               <p>Your Current High Score is: {highScore ? highScore : "0"}</p>
               <p>
                 Welcome to Mouse Fan Trivia! How many questions can you answer?
