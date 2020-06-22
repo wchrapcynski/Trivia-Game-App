@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import PropTypes from "prop-types";
 import * as gameActions from "./../../actions/gameActions";
 import "./choice.scss";
 
@@ -35,6 +36,11 @@ function Choice(props) {
       </p>
     </div>
   );
+}
+
+Choice.propTypes = {
+  correct: PropTypes.bool,
+  choice: PropTypes.string
 }
 
 export default Choice;
