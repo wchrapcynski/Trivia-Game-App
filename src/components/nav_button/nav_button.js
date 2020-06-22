@@ -11,7 +11,7 @@ function Nav_Button(props) {
         props.classType === "control"
           ? "nav_button__normal nav_button__control"
           : "nav_button__normal"
-      }>
+      } data-test="nav-buttton-component" >
       <p
         className={
           props.classType === "normal"
