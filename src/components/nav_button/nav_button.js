@@ -1,10 +1,10 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import "./nav_button.scss";
 
 function Nav_Button(props) {
-  const { hasGameStarted } = useSelector((state) => state.gameReducer);
+  const { hasGameStarted } = props;
   return (
     <div
       className={
@@ -35,7 +35,7 @@ Nav_Button.propTypes = {
   label: PropTypes.string,
   clasType: PropTypes.string,
   isCorrect: PropTypes.bool,
-  disabled: PropTypes.bool,
+  disabled: PropTypes.bool, 
 };
 
-export default Nav_Button;
+export default connect((state) => ({hasGameStarted: state.gameReducer.hasGameStarted}))(Nav_Button);

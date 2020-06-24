@@ -19,7 +19,7 @@ const initialState = {
   },
 };
 
-function Reducer(state = initialState, action) {
+export default (state = initialState, action) => {
   switch (action.type) {
     case "UDPATE_HAS_GAME_STARTED":
       return { ...state, hasGameStarted: action.payload };
@@ -45,5 +45,3 @@ function Reducer(state = initialState, action) {
       return state;
   }
 }
-
-export default Reducer;
