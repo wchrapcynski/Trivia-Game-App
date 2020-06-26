@@ -1,16 +1,18 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import * as questionActions from "./../../actions/questionActions";
+import { useDispatch, connect } from "react-redux";
+import {
+  nextQuestion,
+  fetchPublishedIds,
+  resetQuestionData,
+} from "./../../actions/questionActions";
 import * as gameActions from "./../../actions/gameActions";
-import * as leaderboardActions from "./../../actions/leaderboarActions"
+import * as leaderboardActions from "./../../actions/leaderboarActions";
 import NavButton from "./../nav_button/nav_button";
 import "./navigation.scss";
 
-function Navigation() {
+function Navigation(props) {
   const dispatch = useDispatch();
-  const { currentQuestion, publishedItemsLength } = useSelector(
-    (state) => state.questionReducer
-  );
+  const { currentQuestion, publishedItemsLength } = props.data.questionReducer;
   const {
     hasGameStarted,
     hasGameEnded,
@@ -19,8 +21,9 @@ function Navigation() {
     score,
     apiEndPoints,
     apiAccessOptions,
-  } = useSelector((state) => state.gameReducer);
-  const {leaderboardDisplay} = useSelector((state) => state.leaderboardReducer)
+  } = props.data.gameReducer;
+  const { leaderboardDisplay } = props.data.leaderboardReducer;
+  const { nextQuestion, fetchPublishedIds, resetQuestionData } = props;
 
   const checkStartGame = () => {
     if (!hasGameStarted) {
@@ -34,7 +37,7 @@ function Navigation() {
       !isQuestionActive &&
       hasGameStarted
     ) {
-      dispatch(questionActions.nextQuestion(currentQuestion));
+      nextQuestion(currentQuestion);
       dispatch(gameActions.setIsQuestionActive(true));
       dispatch(gameActions.updateIsCorrect(null));
     }
@@ -45,25 +48,20 @@ function Navigation() {
       dispatch(gameActions.updateGameStarted(false));
       dispatch(gameActions.updateGameEnded(true));
       dispatch(gameActions.updateIsCorrect(null));
-      dispatch(
-        questionActions.fetchPublishedIds(
-          apiEndPoints.published,
-          apiAccessOptions
-        )
-      );
+      fetchPublishedIds(apiEndPoints.published, apiAccessOptions);
     }
   };
 
   const checkResetGame = () => {
     if (hasGameEnded) {
       dispatch(gameActions.resetGame());
-      dispatch(questionActions.resetQuestionData());
+      resetQuestionData();
     }
   };
 
   const onclickHandlerLeaderBoard = () => {
-    dispatch(leaderboardActions.updateLeaderboardDisplay(!leaderboardDisplay))
-  }
+    dispatch(leaderboardActions.updateLeaderboardDisplay(!leaderboardDisplay));
+  };
 
   const onClickHandlerNext = () => {
     checkStartGame();
@@ -74,6 +72,7 @@ function Navigation() {
 
   return (
     <div className="navigation">
+      {console.log(props.nextQuestion)}
       {hasGameStarted ? (
         <NavButton
           label={`Score ${score}/10`}
@@ -121,4 +120,8 @@ function Navigation() {
   );
 }
 
-export default Navigation;
+const actions = { nextQuestion, fetchPublishedIds, resetQuestionData };
+
+export default connect((state) => ({ data: state }), { ...actions })(
+  Navigation
+);
