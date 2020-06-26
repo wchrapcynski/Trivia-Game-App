@@ -4,38 +4,43 @@ import PropTypes from "prop-types";
 import "./nav_button.scss";
 
 function Nav_Button(props) {
-  const { hasGameStarted } = props;
+  const { hasGameStarted, label, classType, isCorrect, disabled } = props;
   return (
     <div
+      data-test="nav-buttton-component"
       className={
-        props.classType === "control"
+        classType === "control"
           ? "nav_button__normal nav_button__control"
           : "nav_button__normal"
-      } data-test="nav-buttton-component" >
+      }>
       <p
+        data-test="nav-button-text"
         className={
-          props.classType === "normal"
+          classType === "normal"
             ? "button-enabled nav_button__nocursor"
-            : (props.isCorrect === null
+            : (isCorrect === null
                 ? ""
-                : props.isCorrect
+                : isCorrect
                 ? "flashing-green "
                 : "flashing-red ") +
-              (hasGameStarted && props.disabled
+              (hasGameStarted && disabled
                 ? "button-disabled nav_button__nocursor"
                 : "button-enabled nav_button__cursor")
         }>
-        {props.label}
+        {label}
       </p>
     </div>
   );
 }
 
 Nav_Button.propTypes = {
+  hasGameStarted: PropTypes.bool,
   label: PropTypes.string,
-  clasType: PropTypes.string,
+  classType: PropTypes.string,
   isCorrect: PropTypes.bool,
-  disabled: PropTypes.bool, 
+  disabled: PropTypes.bool,
 };
 
-export default connect((state) => ({hasGameStarted: state.gameReducer.hasGameStarted}))(Nav_Button);
+export default connect((state) => ({
+  hasGameStarted: state.gameReducer.hasGameStarted,
+}))(Nav_Button);

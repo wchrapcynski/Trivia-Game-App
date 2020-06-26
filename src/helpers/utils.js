@@ -3,8 +3,8 @@ import { applyMiddleware, createStore } from "redux";
 import rootReducer from "./../store/index";
 import { middlewares } from "./../createStore";
 
-export const findByTestAttribute = (component, attribute) => {
-  const wrapper = component.find(`[data-test='${attribute}']`);
+export const findByTestAttribute = (component, type, attribute) => {
+  const wrapper = component.find(`[${type}='${attribute}']`);
   return wrapper;
 };
 
@@ -14,7 +14,7 @@ export const checkProps = (component, expectedProps) => {
     component.propTypes,
     expectedProps,
     "props",
-    component.name
+    component.name 
   );
   return propsErrors;
 };

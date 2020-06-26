@@ -9,21 +9,21 @@ import NavButton from "./nav_button";
 
 const expectedProps = {
   label: "Test Text",
-  clasType: "TestText",
+  classType: "control",
   isCorrect: true,
-  disabled: true,
+  disabled: false,
 };
 
-const setup = (initialState = {}) => {
+const setup = (initialState = {}, props) => {
   const store = testStore(initialState);
-  const wrapper = shallow(<NavButton store={store} />)
+  const wrapper = shallow(<NavButton store={store} {...props} />)
     .childAt(0)
     .dive();
   return wrapper;
 };
 
 describe("Nav Button Component", () => {
-  describe("Name of the group", () => {
+  describe("Check prop types", () => {
     it("should not throw warnings", () => {
       const propError = checkProps(NavButton, expectedProps);
       expect(propError).toBeUndefined();
@@ -34,13 +34,34 @@ describe("Nav Button Component", () => {
     beforeEach(() => {
       const initialState = {
         gameReducer: {
-          hasGameStarted: true
-        }
-      }
-      wrapper = setup(initialState);
+          hasGameStarted: false,
+        },
+      };
+      wrapper = setup(initialState, expectedProps);
     });
     it("should render a button", () => {
-      const button = findByTestAttribute(wrapper, "nav-buttton-component");
+      const button = findByTestAttribute(
+        wrapper,
+        "data-test",
+        "nav-buttton-component"
+      );
+      expect(button.length).toBe(1);
+    });
+    it("should render button text", () => {
+      const button = findByTestAttribute(
+        wrapper,
+        "data-test",
+        "nav-button-text"
+      );
+      expect(button.length).toBe(1);
+    });
+    it("should be flashing green, enabled, and displaying a cursor", () => {
+      const button = findByTestAttribute(
+        wrapper,
+        "className",
+        "flashing-green button-enabled nav_button__cursor"
+      );
+      // console.log(button.debug());
       expect(button.length).toBe(1);
     });
   });
