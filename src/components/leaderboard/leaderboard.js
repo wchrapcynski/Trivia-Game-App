@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import * as leaderboardActions from "./../../actions/leaderboarActions";
+import * as leaderboardActions from "./../../actions/leaderboardActions";
 import "./leaderboard.scss";
 
 function LeaderBoard() {
