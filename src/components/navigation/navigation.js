@@ -123,7 +123,7 @@ function Navigation(props) {
       <div onClick={onClickHandlerNext}>
         <NavButton
           label={
-            !hasGameStarted ? "Start Game" : isQuestionActive ? "Next" : "Next"
+            !hasGameStarted ? "Start Game" : "Next"
           }
           classType="control"
           isCorrect={!hasGameStarted ? true : null}
