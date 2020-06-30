@@ -5,6 +5,7 @@ import "./nav_button.scss";
 
 function Nav_Button(props) {
   const { hasGameStarted, label, classType, isCorrect, disabled } = props;
+  console.log(isCorrect, classType);
   return (
     <div
       data-test="nav-buttton-component"
@@ -16,16 +17,16 @@ function Nav_Button(props) {
       <p
         data-test="nav-button-text"
         className={
-          classType === "normal"
-            ? "button-enabled nav_button__nocursor"
-            : (isCorrect === null
-                ? ""
-                : isCorrect
-                ? "flashing-green "
-                : "flashing-red ") +
-              (hasGameStarted && disabled
-                ? "button-disabled nav_button__nocursor"
-                : "button-enabled nav_button__cursor")
+          classType === "normal" &&
+          "button-enabled nav_button__nocursor " +
+            (isCorrect === null
+              ? ""
+              : isCorrect
+              ? "flashing-green "
+              : "flashing-red ") +
+            (hasGameStarted && disabled
+              ? "button-disabled nav_button__nocursor"
+              : "button-enabled nav_button__cursor")
         }>
         {label}
       </p>
