@@ -14,9 +14,9 @@ const expectedProps = {
   disabled: false,
 };
 
-const setup = (initialState = {}, props) => {
+const setup = (initialState = {}) => {
   const store = testStore(initialState);
-  const wrapper = shallow(<NavButton store={store} {...props} />)
+  const wrapper = shallow(<NavButton store={store} />)
     .childAt(0)
     .dive();
   return wrapper;
@@ -37,7 +37,8 @@ describe("Nav Button Component", () => {
           hasGameStarted: false,
         },
       };
-      wrapper = setup(initialState, expectedProps);
+      wrapper = setup(initialState);
+      // console.log(wrapper.debug());
     });
     it("should render a button", () => {
       const button = findByTestAttribute(
@@ -59,9 +60,8 @@ describe("Nav Button Component", () => {
       const button = findByTestAttribute(
         wrapper,
         "className",
-        "flashing-green button-enabled nav_button__cursor"
+        "flashing-green button-enabled nav_button__cursor "
       );
-      // console.log(button.debug());
       expect(button.length).toBe(1);
     });
   });

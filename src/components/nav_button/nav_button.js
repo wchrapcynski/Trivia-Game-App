@@ -5,6 +5,32 @@ import "./nav_button.scss";
 
 function Nav_Button(props) {
   const { hasGameStarted, label, classType, isCorrect, disabled } = props;
+
+  const buttonClassLogic = () => {
+    let classString = "";
+    if (classType === "normal") {
+      if (hasGameStarted) {
+        if (isCorrect === null) {
+          classString = "button-enabled nav_button__nocursor ";
+        } else if (isCorrect) {
+          classString = "flashing-green button-enabled nav_button__nocursor ";
+        } else if (!isCorrect) {
+          classString = "flashing-red button-enabled nav_button__nocursor ";
+        }
+      }
+    } else {
+      if (!hasGameStarted) {
+        classString = "flashing-green button-enabled nav_button__cursor ";
+      } else {
+        if (disabled) {
+          classString = "button-disabled nav_button__nocursor ";
+        } else if (!disabled) {
+          classString = "button-enabled nav_button__cursor ";
+        }
+      }
+    }
+    return classString;
+  };
   return (
     <div
       data-test="nav-buttton-component"
@@ -13,21 +39,7 @@ function Nav_Button(props) {
           ? "nav_button__normal nav_button__control"
           : "nav_button__normal"
       }>
-      <p
-        data-test="nav-button-text"
-        className={
-          (classType === "normal" && "button-enabled nav_button__nocursor ") +
-          (classType === "normal" && !hasGameStarted
-            ? ""
-            : isCorrect === null
-            ? ""
-            : isCorrect
-            ? "flashing-green "
-            : "flashing-red ") +
-          (classType === "control" && !hasGameStarted && "flashing-green ") +
-          (classType === "control" && "button-enabled nav_button__cursor ") +
-          (disabled ? "button-disabled " : "button-enabled ")
-        }>
+      <p data-test="nav-button-text" className={buttonClassLogic()}>
         {label}
       </p>
     </div>
