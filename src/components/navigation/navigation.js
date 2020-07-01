@@ -12,7 +12,7 @@ import {
   updateGameEnded,
   resetGame,
 } from "./../../actions/gameActions";
-import { updateLeaderboardDisplay } from "./../../actions/leaderboardActions"
+import { updateLeaderboardDisplay } from "./../../actions/leaderboardActions";
 import NavButton from "./../nav_button/nav_button";
 import "./navigation.scss";
 
@@ -37,7 +37,7 @@ function Navigation(props) {
     updateIsCorrect,
     updateGameEnded,
     resetGame,
-    updateLeaderboardDisplay
+    updateLeaderboardDisplay,
   } = props;
 
   const checkStartGame = () => {
@@ -86,45 +86,47 @@ function Navigation(props) {
   };
 
   return (
-    <div className="navigation">
-      {hasGameStarted ? (
-        <NavButton
-          label={`Score ${score}/10`}
-          classType="normal"
-          isCorrect={null}
-          disabled={false}
-        />
-      ) : (
-        <div onClick={onclickHandlerLeaderBoard}>
+    <div className="navigation" data-test="navigation-component">
+      <div data-test="navigation-button">
+        {hasGameStarted ? (
           <NavButton
-            label={`Top Players`}
-            classType="control"
-            isCorrect={true}
+            label={`Score ${score}/10`}
+            classType="normal"
+            isCorrect={null}
             disabled={false}
           />
-        </div>
-      )}
-      <NavButton
-        label={
-          hasGameEnded
-            ? "Game Over!"
-            : !hasGameStarted
-            ? "Good Luck!"
-            : isCorrect === null
-            ? "Pick One!"
-            : isCorrect === true
-            ? "That's Right!"
-            : "That's Wrong!"
-        }
-        classType="normal"
-        isCorrect={isCorrect}
-        disabled={false}
-      />
-      <div onClick={onClickHandlerNext}>
+        ) : (
+          <div onClick={onclickHandlerLeaderBoard}>
+            <NavButton
+              label={`Top Players`}
+              classType="control"
+              isCorrect={true}
+              disabled={false}
+            />
+          </div>
+        )}
+      </div>
+      <div data-test="navigation-button">
         <NavButton
           label={
-            !hasGameStarted ? "Start Game" : "Next"
+            hasGameEnded
+              ? "Game Over!"
+              : !hasGameStarted
+              ? "Good Luck!"
+              : isCorrect === null
+              ? "Pick One!"
+              : isCorrect === true
+              ? "That's Right!"
+              : "That's Wrong!"
           }
+          classType="normal"
+          isCorrect={isCorrect}
+          disabled={false}
+        />
+      </div>
+      <div onClick={onClickHandlerNext} data-test="navigation-button">
+        <NavButton
+          label={!hasGameStarted ? "Start Game" : "Next"}
           classType="control"
           isCorrect={!hasGameStarted ? true : null}
           disabled={isQuestionActive}
@@ -143,9 +145,7 @@ const actions = {
   updateIsCorrect,
   updateGameEnded,
   resetGame,
-  updateLeaderboardDisplay
+  updateLeaderboardDisplay,
 };
 
-export default connect((state) => ({ ...state }), { ...actions })(
-  Navigation
-);
+export default connect((state) => ({ ...state }), { ...actions })(Navigation);
