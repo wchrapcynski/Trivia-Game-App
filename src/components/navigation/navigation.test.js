@@ -53,7 +53,7 @@ describe("Navigation component", () => {
         "data-test",
         "navigation-component"
       );
-      expect(navigation).toBe(1);
+      expect(navigation.length).toBe(1);
     });
   });
 });
