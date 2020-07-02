@@ -16,7 +16,7 @@ const expectedProps = {
 
 const setup = (initialState = {}) => {
   const store = testStore(initialState);
-  const wrapper = shallow(<NavButton store={store} />)
+  const wrapper = shallow(<NavButton store={store} {...expectedProps}/>)
     .childAt(0)
     .dive();
   return wrapper;
@@ -38,7 +38,6 @@ describe("Nav Button Component", () => {
         },
       };
       wrapper = setup(initialState);
-      // console.log(wrapper.debug());
     });
     it("should render a button", () => {
       const button = findByTestAttribute(

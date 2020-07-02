@@ -124,7 +124,7 @@ function Navigation(props) {
           disabled={false}
         />
       </div>
-      <div onClick={onClickHandlerNext} data-test="navigation-button">
+      <div onClick={onClickHandlerNext} data-test="navigation-button" data-test2="button3-click">
         <NavButton
           label={!hasGameStarted ? "Start Game" : "Next"}
           classType="control"
