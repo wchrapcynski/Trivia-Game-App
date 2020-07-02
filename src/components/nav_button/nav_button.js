@@ -9,17 +9,17 @@ function Nav_Button(props) {
   const buttonClassLogic = () => {
     let classString = "";
     if (classType === "normal") {
-      if (hasGameStarted) {
-        if (isCorrect === null) {
-          classString = "button-enabled nav_button__nocursor ";
-        } else if (isCorrect) {
+      if ((hasGameStarted && isCorrect == null) || !hasGameStarted) {
+        classString = "button-enabled nav_button__nocursor ";
+      } else if (hasGameStarted && isCorrect != null) {
+        if (isCorrect) {
           classString = "flashing-green button-enabled nav_button__nocursor ";
         } else if (!isCorrect) {
           classString = "flashing-red button-enabled nav_button__nocursor ";
         }
       }
     } else {
-      if (!hasGameStarted) {
+      if (classType === "control" && !hasGameStarted) {
         classString = "flashing-green button-enabled nav_button__cursor ";
       } else {
         if (disabled) {
