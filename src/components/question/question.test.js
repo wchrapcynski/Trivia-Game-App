@@ -13,6 +13,7 @@ const setup = (initialState = {}, props) => {
 
 describe("Question Component", () => {
   describe("Renders", () => {
+    let wrapper;
     beforeEach(() => {
       const initialState = {
         questionReducer: {
@@ -29,7 +30,15 @@ describe("Question Component", () => {
           isCorrect: false,
         },
       };
-      setup(initialState);
+      wrapper = setup(initialState);
+    });
+    it("should render the question box component", () => {
+      const questionBox = findByTestAttribute(
+        wrapper,
+        "data-test",
+        "question-box-component"
+      );
+      expect(questionBox.length).toBe(1);
     });
   });
 });
