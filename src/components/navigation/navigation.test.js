@@ -71,7 +71,7 @@ describe("Navigation component", () => {
         emit: mockFunction,
       };
       wrapper = shallow(<Navigation {...props} />);
-      it("should emit callback on click event", () => {
+      it("should emit callback on click event on main button", () => {
         const button = findByTestAttribute(
           wrapper,
           "data-test2",

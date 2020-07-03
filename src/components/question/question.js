@@ -1,33 +1,31 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { connect } from "react-redux";
 import right from "./../../images/right.svg";
 import wrong from "./../../images/wrong.svg";
 import LeaderBoard from "./../leaderboard/leaderboard";
 import "./question.scss";
 
-function Question() {
-  const questionData = useSelector((state) => state.questionReducer.question);
+function Question(props) {
+  const questionData = props.questionReducer.question;
   const {
     hasGameStarted,
     hasGameEnded,
     highScore,
     isQuestionActive,
     isCorrect,
-  } = useSelector((state) => state.gameReducer);
-  const { leaderboardDisplay } = useSelector(
-    (state) => state.leaderboardReducer
-  );
+  } = props.gameReducer;
+  const { leaderboardDisplay } = props.leaderboardReducer;
 
   return (
     <div className="question-box">
       {!hasGameStarted && leaderboardDisplay ? (
-        <div className="question-box__leaderboard active">
+        <div className="question-box__leaderboard active" data-test="display-leaderboard">
           Top 3 Players:
           <hr />
           <LeaderBoard />
         </div>
       ) : (
-        <div className="question-box__normal">
+        <div className="question-box__normal" data-test="question-box-component">
           {!hasGameStarted ? (
             <div className="active">
               <p>Your Current High Score is: {highScore ? highScore : "0"}</p>
@@ -40,11 +38,11 @@ function Question() {
           ) : isCorrect === null ? (
             <p className={isQuestionActive && "active"}>{questionData}</p>
           ) : isCorrect ? (
-            <div className="iscorrect">
+            <div className="iscorrect" data-test="iscorrect_image">
               <img className="iscorrect__img" src={right} alt="right" />
             </div>
           ) : (
-            <div className="iscorrect">
+            <div className="iscorrect" data-test="iscorrect_image">
               <img className="iscorrect__img" src={wrong} alt="wrong" />
             </div>
           )}
@@ -54,4 +52,4 @@ function Question() {
   );
 }
 
-export default Question;
+export default connect((state) => ({ ...state }))(Question);
