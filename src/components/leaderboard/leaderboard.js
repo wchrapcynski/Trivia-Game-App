@@ -1,23 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import * as leaderboardActions from "./../../actions/leaderboardActions";
+import { connect } from "react-redux";
+import { fetchLeaderboardData } from "./../../actions/leaderboardActions";
 import "./leaderboard.scss";
 
-function LeaderBoard() {
-  const dispatch = useDispatch();
-  const { apiAccessOptions, apiEndPoints } = useSelector(
-    (state) => state.gameReducer
-  );
-  const { leaderboardData } = useSelector((state) => state.leaderboardReducer);
+function LeaderBoard(props) {
+  const { apiAccessOptions, apiEndPoint } = props;
+  const { leaderboardData } = props;
+  const { fetchLeaderboardData } = props;
   const [leaderboardDataMap, setLeaderboardDataMap] = useState();
 
   const setLeaderBoardData = () => {
-    dispatch(
-      leaderboardActions.fetchLeaderboardData(
-        apiEndPoints.leaderboard,
-        apiAccessOptions
-      )
-    );
+    fetchLeaderboardData(apiEndPoint, apiAccessOptions);
   };
 
   useEffect(() => {
@@ -31,9 +24,15 @@ function LeaderBoard() {
         leaderboardData.map((data, key) => {
           return (
             <div key={data.id}>
-              {key + 1}{") "}
-              {(data.initials !== "***" ? data.initials : data.email.substring(0,3)).toUpperCase()} {" - "}
-              {data.score}{" - "}
+              {key + 1}
+              {") "}
+              {(data.initials !== "***"
+                ? data.initials
+                : data.email.substring(0, 3)
+              ).toUpperCase()}{" "}
+              {" - "}
+              {data.score}
+              {" - "}
               {data.date}
             </div>
           );
@@ -43,8 +42,18 @@ function LeaderBoard() {
   }, [leaderboardData]);
 
   return (
-    <div className="leaderboard">{leaderboardData && leaderboardDataMap}</div>
+    <div className="leaderboard">
+      {console.log(props)}
+      {leaderboardData && leaderboardDataMap}
+    </div>
   );
 }
 
-export default LeaderBoard;
+export default connect(
+  (state) => ({
+    leaderboardData: state.leaderboardReducer.leaderboardData,
+    apiAccessOptions: state.gameReducer.apiAccessOptions,
+    apiEndPoint: state.gameReducer.apiEndPoints.leaderboard,
+  }),
+  { fetchLeaderboardData }
+)(LeaderBoard);
