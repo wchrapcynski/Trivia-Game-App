@@ -12,7 +12,7 @@ const setup = (initialState = {}, props) => {
 };
 
 describe("Question Component", () => {
-  describe("Renders", () => {
+  describe("Renders when game has started", () => {
     let wrapper;
     beforeEach(() => {
       const initialState = {
@@ -38,6 +38,43 @@ describe("Question Component", () => {
         "data-test",
         "question-box-component"
       );
+      expect(questionBox.length).toBe(1);
+    });
+    it("should not display the leaderboard", () => {
+      const questionBox = findByTestAttribute(
+        wrapper,
+        "data-test",
+        "display-leaderboard"
+      );
+      expect(questionBox.length).toBe(0);
+    });
+  });
+  describe("Renders when game has not started", () => {
+    let wrapper;
+    beforeEach(() => {
+      const initialState = {
+        questionReducer: {
+          question: "Test Text",
+        },
+        leaderboardReducer: {
+          leaderboardDisplay: true,
+        },
+        gameReducer: {
+          hasGameStarted: false,
+          hasGameEnded: true,
+          highScore: 2,
+          isQuestionActive: false,
+          isCorrect: null,
+        },
+      };
+      wrapper = setup(initialState);
+    });
+    it('should render the leaderboard when enabled', () => {
+      const questionBox = findByTestAttribute(
+        wrapper,
+        "data-test",
+        "display-leaderboard"
+      )
       expect(questionBox.length).toBe(1);
     });
   });
