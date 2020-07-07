@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import Choice from "../choice/choice";
 import "./answers.scss";
 
@@ -26,6 +27,10 @@ function Answers(props) {
       />
     </div>
   );
+}
+
+Answers.propTypes = {
+  choices: PropTypes.arrayOf(PropTypes.object)
 }
 
 export default connect((state) => ({

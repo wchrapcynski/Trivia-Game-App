@@ -48,7 +48,6 @@ function App(props) {
 
   return (
     <div className="App">
-      {console.log(props)}
       <header className="header">
         <img className="header__logo" src={Logo} alt="Disney Trivia Logo" />
       </header>
