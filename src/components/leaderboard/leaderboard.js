@@ -45,8 +45,7 @@ function LeaderBoard(props) {
   }, [leaderboardData]);
 
   return (
-    <div className="leaderboard">
-      {console.log(props)}
+    <div className="leaderboard" data-test="leaderboard-component">
       {leaderboardData && leaderboardDataMap}
     </div>
   );
