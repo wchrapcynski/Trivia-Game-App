@@ -1,30 +1,41 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import * as gameActions from "./../../actions/gameActions";
+import {
+  updateIsCorrect,
+  updateScore,
+  updateIsQuestionActive,
+  updateHighScore,
+} from "./../../actions/gameActions";
 import "./choice.scss";
 
-function Choice(props) {
-  const dispatch = useDispatch();
-  const { hasGameStarted, isQuestionActive, score, highScore } = useSelector(
-    (state) => state.gameReducer
-  );
+function Choice(props) {;
+  const {
+    hasGameStarted,
+    isQuestionActive,
+    score,
+    highScore,
+    updateIsCorrect,
+    updateScore,
+    updateIsQuestionActive,
+    updateHighScore,
+  } = props;
 
   const clickHandle = () => {
     if (isQuestionActive) {
       if (props.correct) {
-        dispatch(gameActions.updateIsCorrect(true));
-        dispatch(gameActions.updateScore(score + 1));
+        updateIsCorrect(true);
+        updateScore(score + 1);
       } else {
-        dispatch(gameActions.updateIsCorrect(false));
+        updateIsCorrect(false);
       }
-      dispatch(gameActions.updateIsQuestionActive(false));
+      updateIsQuestionActive(false);
     }
   };
 
   useEffect(() => {
     if (score > highScore) {
-      dispatch(gameActions.updateHighScore(score));
+      updateHighScore(score);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [score]);
@@ -40,7 +51,23 @@ function Choice(props) {
 
 Choice.propTypes = {
   correct: PropTypes.bool,
-  choice: PropTypes.string
-}
+  choice: PropTypes.string,
+};
 
-export default Choice;
+const mapStateToProps = (state) => {
+  return {
+    hasGameStarted: state.gameReducer.hasGameStarted && state.gameReducer.hasGameStarted,
+    isQuestionActive: state.gameReducer.isQuestionActive && state.gameReducer.isQuestionActive,
+    score: state.gameReducer.score && state.gameReducer.score,
+    highScore: state.gameReducer.highScore && state.gameReducer.highScore,
+  };
+};
+
+const actions = {
+  updateIsCorrect,
+  updateScore,
+  updateIsQuestionActive,
+  updateHighScore,
+};
+
+export default connect(mapStateToProps, { ...actions })(Choice);
