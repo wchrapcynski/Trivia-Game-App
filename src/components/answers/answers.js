@@ -1,10 +1,10 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { connect } from "react-redux";
 import Choice from "../choice/choice";
 import "./answers.scss";
 
-function Answers() {
-  const { choices } = useSelector((state) => state.questionReducer);
+function Answers(props) {
+  const { choices } = props;
 
   return (
     <div className="answers">
@@ -28,4 +28,6 @@ function Answers() {
   );
 }
 
-export default Answers;
+export default connect((state) => ({
+  choices: state.questionReducer.choices,
+}))(Answers);

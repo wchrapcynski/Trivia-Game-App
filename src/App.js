@@ -1,35 +1,32 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { connect } from "react-redux";
 import Logo from "./images/logo.svg";
 import "./App.scss";
-import * as questionActions from "./actions/questionActions";
+import {
+  fetchPublishedIds,
+  fetchQuestionData,
+} from "./actions/questionActions";
 import { Question, Answers, Navigation } from "./components/appComponents";
 
-function App() {
-  const dispatch = useDispatch();
-  const { publishedItems, currentQuestion } = useSelector(
-    (state) => state.questionReducer
-  );
-  const { apiAccessOptions, apiEndPoints } = useSelector(
-    (state) => state.gameReducer
-  );
+function App(props) {
+  const {
+    publishedItems,
+    currentQuestion,
+    apiAccessOptions,
+    apiEndPoints,
+    fetchPublishedIds,
+    fetchQuestionData,
+  } = props;
 
   const setPublishedIds = () => {
-    dispatch(
-      questionActions.fetchPublishedIds(
-        apiEndPoints.published,
-        apiAccessOptions
-      )
-    );
+    fetchPublishedIds(apiEndPoints.published, apiAccessOptions);
   };
 
   const setQuestionData = () => {
-    dispatch(
-      questionActions.fetchQuestionData(
-        apiEndPoints.question,
-        apiAccessOptions,
-        publishedItems[currentQuestion]
-      )
+    fetchQuestionData(
+      apiEndPoints.question,
+      apiAccessOptions,
+      publishedItems[currentQuestion]
     );
   };
 
@@ -51,6 +48,7 @@ function App() {
 
   return (
     <div className="App">
+      {console.log(props)}
       <header className="header">
         <img className="header__logo" src={Logo} alt="Disney Trivia Logo" />
       </header>
@@ -64,5 +62,22 @@ function App() {
     </div>
   );
 }
+const mapStateToProps = (state) => {
+  return {
+    publishedItems:
+      state.questionReducer.publishedItems &&
+      state.questionReducer.publishedItems,
+    currentQuestion:
+      state.questionReducer.currentQuestion &&
+      state.questionReducer.currentQuestion,
+    apiAccessOptions:
+      state.gameReducer.apiAccessOptions && 
+      state.gameReducer.apiAccessOptions,
+    apiEndPoints:
+      state.gameReducer.apiEndPoints && 
+      state.gameReducer.apiEndPoints,
+  };
+};
+const actions = { fetchPublishedIds, fetchQuestionData };
 
-export default App;
+export default connect((state) => mapStateToProps, { ...actions })(App);

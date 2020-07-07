@@ -4,9 +4,12 @@ import { fetchLeaderboardData } from "./../../actions/leaderboardActions";
 import "./leaderboard.scss";
 
 function LeaderBoard(props) {
-  const { apiAccessOptions, apiEndPoint } = props;
-  const { leaderboardData } = props;
-  const { fetchLeaderboardData } = props;
+  const {
+    apiAccessOptions,
+    apiEndPoint,
+    leaderboardData,
+    fetchLeaderboardData,
+  } = props;
   const [leaderboardDataMap, setLeaderboardDataMap] = useState();
 
   const setLeaderBoardData = () => {
