@@ -9,7 +9,7 @@ import {
 } from "./../../actions/gameActions";
 import "./choice.scss";
 
-function Choice(props) {;
+function Choice(props) {
   const {
     hasGameStarted,
     isQuestionActive,
@@ -41,7 +41,7 @@ function Choice(props) {;
   }, [score]);
 
   return (
-    <div className="choice" onClick={clickHandle}>
+    <div className="choice" onClick={clickHandle} data-test="choice-component">
       <p className={!isQuestionActive ? "choice-disable" : "choice-active"}>
         {hasGameStarted && props.choice}
       </p>
@@ -56,8 +56,10 @@ Choice.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    hasGameStarted: state.gameReducer.hasGameStarted && state.gameReducer.hasGameStarted,
-    isQuestionActive: state.gameReducer.isQuestionActive && state.gameReducer.isQuestionActive,
+    hasGameStarted:
+      state.gameReducer.hasGameStarted && state.gameReducer.hasGameStarted,
+    isQuestionActive:
+      state.gameReducer.isQuestionActive && state.gameReducer.isQuestionActive,
     score: state.gameReducer.score && state.gameReducer.score,
     highScore: state.gameReducer.highScore && state.gameReducer.highScore,
   };
