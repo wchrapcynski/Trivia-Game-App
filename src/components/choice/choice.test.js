@@ -10,6 +10,7 @@ import Choice from "./choice";
 const expected_props = {
   correct: true,
   choice: "Test text",
+  emitEvent: () => {},
 };
 
 const setup = (intialState = {}, props = { expected_props }) => {
@@ -47,6 +48,45 @@ describe("Choice Component", () => {
         "choice-component"
       );
       expect(choice.length).toBe(1);
+    });
+  });
+  describe("Clicks", () => {
+    let wrapper;
+    let mockFunction;
+    beforeEach(() => {
+      mockFunction = jest.fn();
+      const props = {
+        correct: false,
+        choice: "Example Text",
+      };
+      const intialState = {
+        gameReducer: {
+          hasGameStarted: true,
+          isQuestionActive: true,
+          score: 2,
+          highScore: 3,
+        },
+      };
+      wrapper = shallow(
+        <Choice
+          onClick={mockFunction}
+          store={testStore(intialState)}
+          {...props}
+        />
+      )
+        .childAt(0)
+        .dive();
+    });
+    it("should emit callback on click event", () => {
+      const choice = findByTestAttribute(
+        wrapper,
+        "data-test",
+        "choice-component"
+      );
+      choice.simulate("click");
+      const callback = mockFunction.mock.calls.length;
+      console.log(wrapper.debug());
+      expect(callback).toBe(1);
     });
   });
 });

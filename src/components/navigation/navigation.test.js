@@ -2,7 +2,6 @@ import React from "react";
 import { shallow } from "enzyme";
 import { findByTestAttribute, testStore } from "../../helpers/utils";
 import Navigation from "./navigation";
-import { mockComponent } from "react-dom/test-utils";
 
 const setup = (initialState = {}, props) => {
   const store = testStore(initialState);
@@ -60,27 +59,6 @@ describe("Navigation component", () => {
         "navigation-button"
       );
       expect(navigation.length).toBe(3);
-    });
-  });
-  describe("Clicks", () => {
-    let wrapper;
-    let mockFunction;
-    beforeEach(() => {
-      mockFunction = jest.fn();
-      const props = {
-        emit: mockFunction,
-      };
-      wrapper = shallow(<Navigation {...props} />);
-      it("should emit callback on click event on main button", () => {
-        const button = findByTestAttribute(
-          wrapper,
-          "data-test2",
-          "button3-click"
-        );
-        button.simulate("click");
-        const callback = mockFunction.mock.calls.length;
-        expect(callback).toBe(1);
-      });
     });
   });
 });
