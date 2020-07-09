@@ -6,12 +6,10 @@ import {
   testStore,
 } from "./../../helpers/utils";
 import Choice from "./choice";
-import choice from "./choice";
 
 const expected_props = {
   correct: true,
   choice: "Test text",
-  emitEvent: () => {},
 };
 
 const setup = (intialState = {}, props = { expected_props }) => {
@@ -23,7 +21,7 @@ const setup = (intialState = {}, props = { expected_props }) => {
 };
 
 describe("Choice Component", () => {
-  describe("check prop types", () => {
+  describe("Check prop types", () => {
     it("should not throw warnings", () => {
       const propError = checkProps(Choice, expected_props);
       expect(propError).toBeUndefined();
