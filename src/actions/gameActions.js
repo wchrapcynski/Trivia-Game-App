@@ -1,5 +1,7 @@
+import { types } from "./types";
+
 export function setHasGameStarted(data) {
-  return { type: "UDPATE_HAS_GAME_STARTED", payload: data };
+  return { type: types.UDPATE_HAS_GAME_STARTED, payload: data };
 }
 
 export function updateGameStarted(bool) {
@@ -9,7 +11,7 @@ export function updateGameStarted(bool) {
 }
 
 export function setHasGameEnded(data) {
-  return { type: "UDPATE_HAS_GAME_ENDED", payload: data };
+  return { type: types.UDPATE_HAS_GAME_ENDED, payload: data };
 }
 
 export function updateGameEnded(bool) {
@@ -19,7 +21,7 @@ export function updateGameEnded(bool) {
 }
 
 export function setIsQuestionActive(data) {
-  return { type: "UPDATE_IS_QUESTION_ACTIVE", payload: data };
+  return { type: types.UPDATE_IS_QUESTION_ACTIVE, payload: data };
 }
 
 export function updateIsQuestionActive(bool) {
@@ -29,7 +31,7 @@ export function updateIsQuestionActive(bool) {
 }
 
 export function isCorrect(data) {
-  return { type: "UPDATE_IS_CORRECT", payload: data };
+  return { type: types.UPDATE_IS_CORRECT, payload: data };
 }
 
 export function updateIsCorrect(bool) {
@@ -39,7 +41,7 @@ export function updateIsCorrect(bool) {
 }
 
 export function setScore(data) {
-  return { type: "UDPATE_SCORE", payload: data };
+  return { type: types.UDPATE_SCORE, payload: data };
 }
 
 export function updateScore(score) {
@@ -49,23 +51,23 @@ export function updateScore(score) {
 }
 
 export function setHighScore(data) {
-  return { type: "UDPATE_HIGH_SCORE", payload: data };
+  return { type: types.UDPATE_HIGH_SCORE, payload: data };
 }
 
 export function updateHighScore(score) {
   return (dispatch) => {
-    dispatch(setHighScore(score))
+    dispatch(setHighScore(score));
     localStorage.removeItem("highscore");
     localStorage.setItem("highscore", score);
-  }
+  };
 }
 
 export function setRestGame() {
-  return { type: "RESET_GAME"};
+  return { type: types.RESET_GAME };
 }
 
 export function resetGame() {
-  return(dispatch) => {
-    dispatch(setRestGame())
-  }
+  return (dispatch) => {
+    dispatch(setRestGame());
+  };
 }

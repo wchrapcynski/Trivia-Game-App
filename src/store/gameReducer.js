@@ -1,3 +1,5 @@
+import { types } from "./../actions/types";
+
 const baseApiUrl = "http://localhost:8000";
 const initialState = {
   hasGameStarted: false,
@@ -21,19 +23,19 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case "UDPATE_HAS_GAME_STARTED":
+    case types.UDPATE_HAS_GAME_STARTED:
       return { ...state, hasGameStarted: action.payload };
-    case "UDPATE_HAS_GAME_ENDED":
+    case types.UDPATE_HAS_GAME_ENDED:
       return { ...state, hasGameEnded: action.payload };
-    case "UPDATE_IS_QUESTION_ACTIVE":
+    case types.UPDATE_IS_QUESTION_ACTIVE:
       return { ...state, isQuestionActive: action.payload };
-    case "UPDATE_IS_CORRECT":
+    case types.UPDATE_IS_CORRECT:
       return { ...state, isCorrect: action.payload };
-    case "UDPATE_SCORE":
+    case types.UDPATE_SCORE:
       return { ...state, score: action.payload };
-    case "UDPATE_HIGH_SCORE":
+    case types.UDPATE_HIGH_SCORE:
       return { ...state, highScore: action.payload };
-    case "RESET_GAME":
+    case types.RESET_GAME:
       return {
         ...state,
         hasGameStarted: true,
@@ -44,4 +46,4 @@ export default (state = initialState, action) => {
     default:
       return state;
   }
-}
+};
