@@ -1,6 +1,6 @@
 import { types } from "./../actions/types";
 
-const initialState = {
+export const initialState = {
   leaderboardData: null,
   leaderboardDisplay: false,
 };
