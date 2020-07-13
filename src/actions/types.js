@@ -5,5 +5,11 @@ export const types = {
   UPDATE_IS_CORRECT: "updateIsCorrect",
   UDPATE_SCORE: "updateScore",
   UDPATE_HIGH_SCORE: "updateHighScore",
-  RESET_GAME: "resetGame"
+  RESET_GAME: "resetGame",
+  UPDATE_LEADERBOARD_DATA: "updateLeaderboardData",
+  UPDATE_LEADERBOARD_DISPLAY: "updateLeaderboardDisplay",
+  UPDATE_QUESTION_DATA: "updateQuestionData",
+  UPDATE_PUBLISHED_IDS: "updatePublishedIds",
+  SET_NEXT_QUESTION: "setNextQuestion",
+  RESET_GAME_Q: "restGameQ"
 };

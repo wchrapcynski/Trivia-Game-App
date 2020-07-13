@@ -1,3 +1,5 @@
+import { types } from "./../actions/types";
+
 const initialState = {
   leaderboardData: null,
   leaderboardDisplay: false,
@@ -5,9 +7,9 @@ const initialState = {
 
 function Reducer(state = initialState, action) {
   switch (action.type) {
-    case "UPDATE_LEADERBOARD_DATA":
+    case types.UPDATE_LEADERBOARD_DATA:
       return { ...state, leaderboardData: action.payload };
-    case "UPDATE_LEADERBOARD_DISPLAY":
+    case types.UPDATE_LEADERBOARD_DISPLAY:
       return { ...state, leaderboardDisplay: action.payload };
     default:
       return state;

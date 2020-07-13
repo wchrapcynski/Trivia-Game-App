@@ -1,5 +1,7 @@
+import { types } from "./types";
+
 export function setLeaderboardData(data) {
-  return { type: "UPDATE_LEADERBOARD_DATA", payload: data };
+  return { type: types.UPDATE_LEADERBOARD_DATA, payload: data };
 }
 export function fetchLeaderboardData(url, apiOptions) {
   return (dispatch) => {
@@ -11,7 +13,7 @@ export function fetchLeaderboardData(url, apiOptions) {
 }
 
 export function setleaderboardDisplay(data) {
-  return { type: "UPDATE_LEADERBOARD_DISPLAY", payload: data }
+  return { type: types.UPDATE_LEADERBOARD_DISPLAY, payload: data }
 }
 export function updateLeaderboardDisplay(isDisplayed) {
   return (dispatch) => {

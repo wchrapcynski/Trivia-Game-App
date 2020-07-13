@@ -1,4 +1,5 @@
 import shuffleArray from "../helpers/shuffleArray";
+import { types } from "./../actions/types";
 
 function setUpQuestionData(data) {
   let questionData = {
@@ -14,7 +15,7 @@ function setUpQuestionData(data) {
 }
 
 export function setQuestionData(data) {
-  return { type: "UPDATE_QUESTION_DATA", payload: data };
+  return { type: types.UPDATE_QUESTION_DATA, payload: data };
 }
 export function fetchQuestionData(url, apiOptions, id = "") {
   return (dispatch) => {
@@ -27,7 +28,7 @@ export function fetchQuestionData(url, apiOptions, id = "") {
 }
 
 export function setPublishedIds(data) {
-  return { type: "UPDATE_PUBLISHED_IDS", payload: data };
+  return { type: types.UPDATE_PUBLISHED_IDS, payload: data };
 }
 export function fetchPublishedIds(url, apiOptions) {
   return (dispatch) => {
@@ -39,7 +40,7 @@ export function fetchPublishedIds(url, apiOptions) {
 }
 
 export function setNextQuestion(data) {
-  return { type: "SET_NEXT_QUESTION", payload: data };
+  return { type: types.SET_NEXT_QUESTION, payload: data };
 }
 export function nextQuestion(currentQuestion) {
   return (dispatch) => {
@@ -48,7 +49,7 @@ export function nextQuestion(currentQuestion) {
 }
 
 export function resetQuestionData() {
-  return { type: "RESET_GAME"};
+  return { type: types.RESET_GAME_Q};
 }
 
 export function restartGame() {

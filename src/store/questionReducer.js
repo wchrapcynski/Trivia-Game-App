@@ -1,3 +1,5 @@
+import { types } from "./../actions/types";
+
 const initialState = {
   question: "",
   choices: null,
@@ -8,21 +10,21 @@ const initialState = {
 
 function Reducer(state = initialState, action) {
   switch (action.type) {
-    case "UPDATE_QUESTION_DATA":
+    case types.UPDATE_QUESTION_DATA:
       return {
         ...state,
         question: action.payload.question,
         choices: action.payload.choices,
       };
-    case "UPDATE_PUBLISHED_IDS":
+    case types.UPDATE_PUBLISHED_IDS:
       return {
         ...state,
         publishedItems: action.payload,
         publishedItemsLength: action.payload.length,
       };
-    case "SET_NEXT_QUESTION":
+    case types.SET_NEXT_QUESTION:
       return { ...state, currentQuestion: action.payload };
-    case "RESET_GAME":
+    case types.RESET_GAME_Q:
       return {
         ...state,
         question: "",
