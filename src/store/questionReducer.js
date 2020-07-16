@@ -1,6 +1,6 @@
 import { types } from "./../actions/types";
 
-const initialState = {
+export const initialState = {
   question: "",
   choices: null,
   publishedItems: null,
