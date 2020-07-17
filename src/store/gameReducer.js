@@ -1,7 +1,7 @@
 import { types } from "./../actions/types";
 
-const baseApiUrl = "http://localhost:8000";
-const initialState = {
+export const baseApiUrl = "http://localhost:8000";
+export const initialState = {
   hasGameStarted: false,
   hasGameEnded: false,
   isQuestionActive: true,
