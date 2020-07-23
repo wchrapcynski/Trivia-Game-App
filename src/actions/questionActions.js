@@ -2,7 +2,7 @@ import shuffleArray from "../helpers/shuffleArray";
 import { types } from "./../actions/types";
 import axios from "axios";
 
-function setUpQuestionData(data) {
+export function setUpQuestionData(data) {
   let questionData = {
     question: data.question,
     choices: shuffleArray([
